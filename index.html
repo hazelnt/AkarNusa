@@ -1,948 +1,1172 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Akar Nusa</title>
-<link rel="icon" type="image/png" href="bird.png">
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, Helvetica, sans-serif;
-    scroll-behavior:smooth;
-}
-
-body{
-    background:#f5f5f5;
-}
-/* NAVBAR */
-nav{
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:20px 80px;
-    transition:.4s;
-    z-index:1000;
-}
-
-nav.scrolled{
-    background:white;
-    box-shadow:0 4px 15px rgba(0,0,0,.1);
-    padding:15px 80px;
-}
-
-.logo a{
-    text-decoration:none;
-    font-weight:bold;
-    transition:.4s;
-}
-
-.logo img{
-    height: 45px;   /* ubah sesuai kebutuhan */
-    width: auto;
-    display: block;
-}
-
-nav.scrolled .logo a{
-    color:#2c3e50;
-}
-
-nav.scrolled .logo{
-    color:#2c3e50;
-}
-
-nav ul{
-    display:flex;
-    list-style:none;
-}
-
-nav ul li{
-    margin-left:30px;
-}
-
-nav ul li a{
-    text-decoration:none;
-    color: white;
-    font-weight:bold;
-    transition:.3s;
-}
-
-nav.scrolled ul li a{
-    color:#2c3e50;
-}
-
-nav ul li a:hover{
-    color:#00c896;
-}
-/* HERO */
-.hero{
-    position:relative;
-    height:100vh;
-    overflow:hidden;
-}
-
-.slide{
-    position:absolute;
-    width:100%;
-    height:100%;
-    opacity:0;
-    transition:1s;
-}
-
-.slide.active{
-    opacity:1;
-}
-
-.slide img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-.overlay{
-    position:absolute;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0);
-}
-
-.hero-content{
-    position:absolute;
-    top:80%;
-    left:20%;
-    transform:translate(-50%,-50%);
-    color:white;
-    text-align:center;
-    z-index:5;
-}
-
-.hero-content h1{
-    font-size:60px;
-    margin-bottom:20px;
-}
-
-.hero-content p{
-    font-size:20px;
-}
-
-.about-container{
-    display: flex;
-    align-items: center;
-    gap: 60px;
-}
-
-.about-image{
-    flex: 1;
-}
-
-.about-image img{
-    width: 100%;
-    max-width: 450px;
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0,0,0,.15);
-}
-
-.about-text{
-    flex: 1;
-}
-
-.about-text h2{
-    font-size: 42px;
-    margin-bottom: 20px;
-}
-
-.about-text p{
-    font-size: 18px;
-    line-height: 1.8;
-    color: #555;
-}
-
-/* DOTS */
-.dots{
-    position:absolute;
-    bottom:40px;
-    width:100%;
-    display:flex;
-    justify-content:center;
-    gap:12px;
-    z-index:10;
-}
-
-.dot{
-    width:15px;
-    height:15px;
-    background:white;
-    border-radius:50%;
-    opacity:.5;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.dot.active{
-    opacity:1;
-    transform:scale(1.3);
-}
-
-/* CONTENT */
-section{
-    padding:100px 10%;
-}
-
-h2{
-    margin-bottom:20px;
-    font-size:40px;
-}
-
-.about p{
-    line-height:1.8;
-}
-.about p b{
-    font-weight:bold;
-    color:#1F6E43;
-}
-.about div{
-    margin: 20px 0;
-}
-/* ACTIVITIES */
-
-.activities{
-    padding:90px 5%;
-    background:#F8F6F1;
-    overflow:hidden;
-}
-
-.section-title{
-    text-align:center;
-    margin-bottom:50px;
-}
-
-.section-title h2{
-    font-size:42px;
-    color:#1F6E43;
-    margin-bottom:10px;
-}
-
-.section-title p{
-    color:#666;
-    font-size:18px;
-}
-
-/*COVERFLOW */
-
-.coverflow{
-    position:relative;
-    width:100%;
-    height:270px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    
-    perspective:1400px;
-    overflow:hidden;
-}
-.activity-info{
-    text-align:center;
-    margin:40px auto 0;
-    font-size: 30px;
-    color: #1f4433;
-    width:70%;
-}
-/* CARD */
-
-.card{
-
-    position:absolute;
-
-    width:170px;
-    height:220px;
-
-    border-radius:18px;
-
-    overflow:hidden;
-
-    cursor:pointer;
-
-    background:#fff;
-
-    transition:
-        transform .7s ease,
-        opacity .7s ease,
-        filter .7s ease,
-        box-shadow .7s ease;
-
-    box-shadow:
-        0 10px 25px rgba(0,0,0,.15);
-
-}
-
-.card img{
-
-    width:100%;
-    height:100%;
-    object-fit:cover;
-
-}
-
-/* FOTO TENGAH */
-
-.card.active{
-
-    transform:
-        translateX(0)
-        scale(1.08);
-
-    opacity:1;
-
-    filter:none;
-
-    z-index:20;
-
-}
-
-/* FOTO KIRI */
-
-.card.left{
-
-    transform:
-        translateX(-170px)
-        scale(.82)
-        rotateY(18deg);
-
-    opacity:.55;
-
-    filter:blur(2px);
-
-    z-index:10;
-
-}
-
-/* FOTO KANAN */
-
-.card.right{
-
-    transform:
-        translateX(170px)
-        scale(.82)
-        rotateY(-18deg);
-
-    opacity:.55;
-
-    filter:blur(2px);
-
-    z-index:10;
-
-}
-
-/* PALING KIRI */
-
-.card.hide-left{
-
-    transform:
-        translateX(-320px)
-        scale(.60);
-
-    opacity:0;
-
-    z-index:1;
-
-}
-
-/* PALING KANAN */
-
-.card.hide-right{
-
-    transform:
-        translateX(320px)
-        scale(.60);
-
-    opacity:0;
-
-    z-index:1;
-
-}
-
-.card:hover{
-
-    box-shadow:
-        0 18px 35px rgba(0,0,0,.22);
-
-}
-
-/* DETAIL PAGE */
-
-.activity-page{
-
-    display:none;
-
-    padding:80px 8%;
-
-    background:white;
-
-}
-
-.activity-page.show{
-
-    display:block;
-
-    animation:fade .5s;
-
-}
-
-.activity-content{
-
-    display:flex;
-
-    gap:60px;
-
-    align-items:center;
-
-}
-
-.activity-gallery{
-
-    flex:1;
-
-}
-
-.activity-info{
-
-    flex:1;
-
-}
-
-.activity-info h2{
-
-    color:#1F6E43;
-
-    font-size:36px;
-
-    margin:20px 0;
-
-}
-
-.activity-info p{
-
-    color:#666;
-
-    line-height:1.8;
-
-    font-size:17px;
-
-    
-
-}
-
-/* MAIN IMAGE*/
-
-.gallery-main img{
-    width:100%;
-    border-radius:20px;
-    height:420px;
-    object-fit:cover;
-    box-shadow:0 12px 30px rgba(0,0,0,.18);
-}
-
-/* THUMBNAILS*/
-
-.gallery-thumb{
-    display:flex;
-    justify-content:center;
-    gap:12px;
-    margin-top:18px;
-}
-
-.gallery-thumb img{
-    width:70px;
-    height:70px;
-    border-radius:12px;
-    object-fit:cover;
-    cursor:pointer;
-    opacity:.6;
-    transition:.3s;
-}
-
-.gallery-thumb img:hover{
-    opacity:1;
-}
-
-.gallery-thumb img.active{
-    opacity:1;
-    border:3px solid #1F6E43;
-}
-
-/* BUTTON*/
-
-.back-btn{
-    padding:12px 28px;
-    border:none;
-    border-radius:30px;
-    background:#1F6E43;
-    color:white;
-    cursor:pointer;
-    margin-bottom:40px;
-    transition:.3s;
-}
-
-.back-btn:hover{
-    background:#165030;
-}
-
-/*  INFO BOX */
-
-.activity-highlight{
-    display:flex;
-    gap:20px;
-    margin-top:40px;
-}
-
-.highlight-box{
-    flex:1;
-    background:#F8F6F1;
-    border-radius:16px;
-    padding:20px;
-    text-align:center;
-}
-
-.highlight-box h3{
-    color:#1F6E43;
-    margin-bottom:10px;
-}
-
-.highlight-box p{
-    color:#555;
-    font-size:15px;
-}
-
-/* ANIMATION */
-@keyframes fade{
-    from{
-        opacity:0;
-        transform:translateY(20px);
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akar Nusa – Nurturing the future</title>
+  <link rel="icon" type="image/png" href="bird.png" />
+  <style>
+    /* ---------- RESET & BASE ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+      scroll-behavior: smooth;
     }
-    to{
-        opacity:1;
-        transform:translateY(0);
+    body {
+      background: #f5f5f5;
     }
-}
 
-/* RESPONSIVE */
-@media(max-width:900px){
-.activity-content{
-    flex-direction:column;
-}
-.coverflow{
-    height:220px;
-}
-.card{
-    width:130px;
-    height:170px;
-}
-.card.left{
-    transform:
-        translateX(-110px)
-        scale(.8);
-}
-.card.right{
-    transform:
-        translateX(110px)
-        scale(.8);
-}
-.card.hide-left{
-    transform:translateX(-220px) scale(.55);
-}
-.card.hide-right{
-    transform:translateX(220px) scale(.55);
-}
-.gallery-main img{
-    height:280px;
-}
-.activity-highlight{
-    flex-direction:column;
-}
-}
-/* RESPONSIVE */
-@media(max-width:900px){
-.card{
-    width:230px;
-    height:300px;
-}
-.card.left{
-    transform:translateX(-150px) scale(.82);
-}
-.card.right{
-    transform:translateX(150px) scale(.82);
-}
-.activity-info p{
-    width:95%;
-}
-}
-/* CONTACT */
-.contact{
-    background:#1f4433;
-    color:white;
-    text-align:center;
-}
-.contact p{
-    margin:10px 0;
-    font-size:18px;
-}
-footer{
-    background:#1e262e;
-    color:white;
-    text-align:center;
-    padding:20px;
-}
-/* RESPONSIVE */
-@media(max-width:768px){
-  .about-container{
+    /* ---------- NAVBAR ---------- */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 80px;
+      transition: 0.4s;
+      z-index: 1000;
+    }
+    nav.scrolled {
+      background: white;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      padding: 15px 80px;
+    }
+    .logo a {
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.4s;
+    }
+    .logo img {
+      height: 45px;
+      width: auto;
+      display: block;
+    }
+    nav.scrolled .logo a {
+      color: #2c3e50;
+    }
+    nav.scrolled .logo {
+      color: #2c3e50;
+    }
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+    nav ul li {
+      margin-left: 30px;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    nav.scrolled ul li a {
+      color: #2c3e50;
+    }
+    nav ul li a:hover {
+      color: #00c896;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .slide {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      transition: 1s;
+    }
+    .slide.active {
+      opacity: 1;
+    }
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0);
+    }
+    .hero-content {
+      position: absolute;
+      top: 80%;
+      left: 20%;
+      transform: translate(-50%, -50%);
+      color: white;
+      text-align: center;
+      z-index: 5;
+    }
+    .hero-content h1 {
+      font-size: 60px;
+      margin-bottom: 20px;
+    }
+    .hero-content p {
+      font-size: 20px;
+    }
+    .dots {
+      position: absolute;
+      bottom: 40px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      z-index: 10;
+    }
+    .dot {
+      width: 15px;
+      height: 15px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.5;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .dot.active {
+      opacity: 1;
+      transform: scale(1.3);
+    }
+
+    /* ---------- ABOUT ---------- */
+    section {
+      padding: 100px 10%;
+    }
+    h2 {
+      margin-bottom: 20px;
+      font-size: 40px;
+    }
+    .about-container {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      margin-bottom: 60px;
+    }
+    .about-image {
+      flex: 1;
+    }
+    .about-image img {
+      width: 100%;
+      max-width: 450px;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    }
+    .about-text {
+      flex: 1;
+    }
+    .about-text h2 {
+      font-size: 42px;
+      margin-bottom: 20px;
+      color: #1F6E43;
+    }
+    .about-text p {
+      font-size: 18px;
+      line-height: 1.8;
+      color: #555;
+    }
+    .about-text b {
+      color: #1F6E43;
+    }
+
+    /* ---------- ACTIVITIES ---------- */
+    .activities {
+      padding: 90px 5%;
+      background: #F8F6F1;
+      overflow: hidden;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .section-title h2 {
+      font-size: 42px;
+      color: #1F6E43;
+      margin-bottom: 10px;
+    }
+    .section-title p {
+      color: #666;
+      font-size: 18px;
+    }
+
+    /* ---------- COVERFLOW ---------- */
+    .coverflow {
+      position: relative;
+      width: 100%;
+      height: 320px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      perspective: 1400px;
+      overflow: hidden;
+    }
+    .card {
+      position: absolute;
+      width: 190px;
+      height: 250px;
+      border-radius: 22px;
+      overflow: hidden;
+      background: #fff;
+      cursor: pointer;
+      transition: transform 0.7s ease, opacity 0.7s ease, filter 0.7s ease,
+        box-shadow 0.7s ease;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
+    }
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .card.active {
+      transform: translateX(0) scale(1.1);
+      opacity: 1;
+      filter: none;
+      z-index: 20;
+    }
+    .card.left {
+      transform: translateX(-190px) scale(0.82) rotateY(18deg);
+      opacity: 0.55;
+      filter: blur(2px);
+      z-index: 10;
+    }
+    .card.right {
+      transform: translateX(190px) scale(0.82) rotateY(-18deg);
+      opacity: 0.55;
+      filter: blur(2px);
+      z-index: 10;
+    }
+    .card.hide-left {
+      transform: translateX(-360px) scale(0.62);
+      opacity: 0;
+      z-index: 1;
+    }
+    .card.hide-right {
+      transform: translateX(360px) scale(0.62);
+      opacity: 0;
+      z-index: 1;
+    }
+    .card:hover {
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.22);
+    }
+
+    .activity-info {
+      width: 75%;
+      margin: 55px auto 0;
+      text-align: center;
+    }
+    .activity-info h3 {
+      font-size: 34px;
+      color: #1F6E43;
+      margin-bottom: 18px;
+    }
+    .activity-info p {
+      font-size: 18px;
+      color: #666;
+      line-height: 1.8;
+    }
+
+    /* ---------- OVERLAY (diperbaiki sesuai contoh) ---------- */
+    .activity-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(8px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      z-index: 9999;
+    }
+    .activity-overlay.show {
+      display: flex;
+      animation: fadeOverlay 0.35s ease;
+    }
+    @keyframes fadeOverlay {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    @keyframes popup {
+      from {
+        transform: scale(0.92) translateY(20px);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .activity-window {
+      position: relative;
+      width: 95%;
+      max-width: 1200px;
+      max-height: 92vh;
+      background: #ffffff;
+      border-radius: 28px;
+      display: flex;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+      animation: popup 0.4s ease;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 44px;
+      height: 44px;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      font-size: 28px;
+      font-weight: 300;
+      cursor: pointer;
+      transition: 0.3s;
+      z-index: 10;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+    }
+    .close-btn:hover {
+      background: #1F6E43;
+      color: white;
+      transform: rotate(90deg);
+    }
+
+    /* LEFT SIDE - GALLERY */
+    .overlay-left {
+      flex: 1.2;
+      background: #f8f6f1;
+      padding: 30px 30px 30px 30px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .main-image {
+      flex: 1;
+      min-height: 0;
+    }
+    .main-image img {
+      width: 100%;
+      height: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 18px;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+      transition: opacity 0.2s;
+    }
+    .main-image img.change {
+      opacity: 0.5;
+    }
+
+    .thumbnail-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 18px;
+      flex-wrap: wrap;
+    }
+    .thumbnail-container img {
+      width: 72px;
+      height: 72px;
+      object-fit: cover;
+      border-radius: 12px;
+      cursor: pointer;
+      opacity: 0.5;
+      border: 3px solid transparent;
+      transition: 0.3s;
+    }
+    .thumbnail-container img:hover {
+      opacity: 0.8;
+      transform: scale(1.04);
+    }
+    .thumbnail-container img.active {
+      opacity: 1;
+      border-color: #1F6E43;
+      transform: scale(1.05);
+    }
+
+    /* RIGHT SIDE - CONTENT */
+    .overlay-right {
+      flex: 1;
+      padding: 40px 45px 40px 40px;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      background: #ffffff;
+    }
+
+    .program-label {
+      display: inline-block;
+      background: #eaf6ef;
+      color: #1F6E43;
+      padding: 6px 18px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+      width: max-content;
+      text-transform: uppercase;
+    }
+
+    .overlay-right h2 {
+      font-size: 38px;
+      color: #1F6E43;
+      margin-bottom: 14px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .overlay-right .description {
+      font-size: 16px;
+      color: #555;
+      line-height: 1.8;
+      margin-bottom: 6px;
+    }
+
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: #e7e7e7;
+      margin: 24px 0 20px 0;
+    }
+
+    .overlay-right h3 {
+      color: #1F6E43;
+      font-size: 18px;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .overlay-right ul {
+      padding-left: 0;
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+    }
+    .overlay-right ul li {
+      margin-bottom: 6px;
+      color: #444;
+      font-size: 15px;
+      position: relative;
+      padding-left: 22px;
+      line-height: 1.6;
+    }
+    .overlay-right ul li::before {
+      content: "✦";
+      position: absolute;
+      left: 0;
+      color: #1F6E43;
+      font-size: 14px;
+    }
+
+    .program-information {
+      display: flex;
+      gap: 16px;
+      margin-top: 18px;
+      margin-bottom: 8px;
+    }
+    .info-card {
+      flex: 1;
+      background: #f8f6f1;
+      padding: 16px 20px;
+      border-radius: 14px;
+    }
+    .info-card h4 {
+      color: #1F6E43;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      margin-bottom: 4px;
+    }
+    .info-card p {
+      color: #333;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .instagram-button {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: max-content;
+      padding: 14px 32px;
+      background: #1F6E43;
+      color: white;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 15px;
+      transition: 0.3s;
+      text-decoration: none;
+      border: none;
+      margin-top: 22px;
+    }
+    .instagram-button:hover {
+      background: #165132;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(31, 110, 67, 0.3);
+    }
+
+    /* ---------- CONTACT ---------- */
+    .contact {
+      background: #1f4433;
+      color: white;
+      text-align: center;
+    }
+    .contact p {
+      margin: 10px 0;
+      font-size: 18px;
+    }
+    footer {
+      background: #1e262e;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 1024px) {
+      .activity-window {
+        flex-direction: column;
+        max-height: 95vh;
+        overflow-y: auto;
+        border-radius: 20px;
+      }
+      .overlay-left {
+        padding: 20px 20px 10px 20px;
+      }
+      .overlay-right {
+        padding: 24px 28px 28px 28px;
+      }
+      .main-image img {
+        max-height: 260px;
+      }
+      .thumbnail-container img {
+        width: 60px;
+        height: 60px;
+      }
+      .overlay-right h2 {
+        font-size: 30px;
+      }
+      .program-information {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      .info-card {
+        flex: 1 1 40%;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 16px 24px;
+      }
+      nav.scrolled {
+        padding: 12px 24px;
+      }
+      nav ul li {
+        margin-left: 18px;
+      }
+      nav ul li a {
+        font-size: 14px;
+      }
+      .hero-content h1 {
+        font-size: 32px;
+      }
+      .hero-content p {
+        font-size: 16px;
+      }
+      .about-container {
         flex-direction: column;
         text-align: center;
-    }
-    .about-image img{
+        gap: 30px;
+      }
+      .about-image img {
         max-width: 100%;
+      }
+      .about-text h2 {
+        font-size: 30px;
+      }
+      .coverflow {
+        height: 220px;
+      }
+      .card {
+        width: 140px;
+        height: 185px;
+      }
+      .card.left {
+        transform: translateX(-120px) scale(0.78);
+      }
+      .card.right {
+        transform: translateX(120px) scale(0.78);
+      }
+      .card.hide-left {
+        transform: translateX(-230px) scale(0.55);
+      }
+      .card.hide-right {
+        transform: translateX(230px) scale(0.55);
+      }
+      .activity-info {
+        width: 95%;
+        margin-top: 35px;
+      }
+      .activity-info h3 {
+        font-size: 24px;
+      }
+      .activity-window {
+        border-radius: 16px;
+      }
+      .overlay-right h2 {
+        font-size: 26px;
+      }
+      .overlay-right ul li {
+        font-size: 14px;
+      }
+      .program-information {
+        flex-direction: column;
+      }
+      .info-card {
+        flex: 1;
+      }
+      .instagram-button {
+        width: 100%;
+        justify-content: center;
+      }
+      .close-btn {
+        width: 38px;
+        height: 38px;
+        font-size: 22px;
+        top: 12px;
+        right: 12px;
+      }
+      section {
+        padding: 60px 5%;
+      }
+      .activities {
+        padding: 60px 3%;
+      }
     }
-nav{
-    padding:20px;
-}
-nav.scrolled{
-    padding:15px 20px;
-}
-.hero-content h1{
-    font-size:38px;   
-}
-.hero-content p{
-    font-size:18px;
-}
-}
-</style>
+
+    @media (max-width: 480px) {
+      .card {
+        width: 110px;
+        height: 150px;
+      }
+      .card.left {
+        transform: translateX(-90px) scale(0.7);
+      }
+      .card.right {
+        transform: translateX(90px) scale(0.7);
+      }
+      .card.hide-left {
+        transform: translateX(-170px) scale(0.45);
+      }
+      .card.hide-right {
+        transform: translateX(170px) scale(0.45);
+      }
+      .coverflow {
+        height: 180px;
+      }
+      .thumbnail-container img {
+        width: 50px;
+        height: 50px;
+      }
+      .overlay-right {
+        padding: 18px 16px 20px 16px;
+      }
+      .overlay-left {
+        padding: 14px 14px 8px 14px;
+      }
+      .main-image img {
+        max-height: 180px;
+      }
+    }
+  </style>
 </head>
 <body>
-<nav id="navbar">
-<div class="logo"><a href="#"><img src="Group 28.png" alt="Akar Nusa Logo"></a></div>
-<ul>
-<li><a href="#">Home</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#activities">Activities</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="logo"><a href="#"><img src="Group 28.png" alt="Akar Nusa Logo" /></a></div>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#activities">Activities</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-</nav>
+  <!-- HERO -->
+  <header class="hero">
+    <div class="slide active">
+      <div class="overlay"></div>
+      <img src="GYAF2026_V4_WebBanner.png" alt="Banner" />
+    </div>
+    <div class="slide">
+      <div class="overlay"></div>
+      <img src="01.jpg" alt="Slide 1" />
+    </div>
+    <div class="slide">
+      <div class="overlay"></div>
+      <img src="action.jpg." alt="Slide 2" />
+    </div>
+    <div class="slide">
+      <div class="overlay"></div>
+      <img src="BF792313-94DB-49D3-AFB0-C859D0E57840.jpg" alt="Slide 3" />
+    </div>
+    <div class="slide">
+      <div class="overlay"></div>
+      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" alt="Slide 4" />
+    </div>
+    <div class="hero-content">
+      <h1>Akar Nusa</h1>
+      <p>Nurturing the future</p>
+    </div>
+    <div class="dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+  </header>
 
-<header class="hero">
-
-<div class="slide active">
-<div class="overlay"></div>
-<img src="GYAF2026_V4_WebBanner.png">
-</div>
-
-<div class="slide">
-<div class="overlay"></div>
-<img src="01.jpg">
-</div>
-
-<div class="slide">
-<div class="overlay"></div>
-<img src="action.jpg.">
-</div>
-
-<div class="slide">
-<div class="overlay"></div>
-<img src="BF792313-94DB-49D3-AFB0-C859D0E57840.jpg">
-</div>
-
-<div class="slide">
-<div class="overlay"></div>
-<img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
-</div>
-
-<div class="hero-content">
-<h1>Akar Nusa</h1>
-<p>Nurturing the future</p>
-</div>
-
-<div class="dots">
-<span class="dot active"></span>
-<span class="dot"></span>
-<span class="dot"></span>
-<span class="dot"></span>
-<span class="dot"></span>
-</div>
-
-</header>
-
-<section id="about" class="about">
-
+  <!-- ABOUT -->
+  <section id="about" class="about">
     <div class="about-container">
-
-        <div class="about-image">
-            <img src="foto.jpg" alt="Akar Nusa">
-        </div>
-
-        <div class="about-text">
-            <h2>GYAF IB Awardee</h2>
-
-            <p>
-                Receiving the Global Youth Action Fund is a <b>meaningful recognition</b> that encourages us to keep <b>expanding our impact and empowering more young people to lead change.</b> We hope this support enables our programs to reach more schools and communities, creating a lasting positive impact for both people and the planet.
-            </p>
-            <p>
-              <b> — AkarNusa</b>
-            </p>
-        </div>
-
-    </div>
-
-        <div class="about-container">
-
-        <div class="about-image">
-            <img src="foto.jpg" alt="Akar Nusa">
-        </div>
-
-        <div class="about-text">
-            <h2>What is AkarNusa ?</h2>
-
-            <p>
-                <b>Akar Nusa is a non-profit organization focusing on the environment and education.</b> Our mission is to raise awareness and encourage the younger generation to take concrete action towards sustainable development. Our work has been recognized by the International Baccalaureate (IB), including through funding support and opportunities that have enabled us to further develop and expand our sustainability and education initiatives 
-
-Akar Nusa’s programs include Akar NuAction, Akar NuCycle, Akar Nusa Tales and GreenLeap.
-
-            </p>
-        </div>
-
-    </div>
-
-</section>
-
-<section id="activities" class="activities">
-
-    <div class="section-title">
-        <h2>Our Activities</h2>
-        <p>Growing together through meaningful actions.</p>
-    </div>
-
-    <div class="coverflow">
-
-        <div class="card active"
-            data-title="Tree Planting"
-            data-desc="Bersama masyarakat dan relawan menanam ratusan pohon untuk menjaga kelestarian lingkungan.">
-
-            <img src="activity1.jpg" alt="">
-        </div>
-
-        <div class="card"
-            data-title="Environmental Education"
-            data-desc="Mengadakan kelas edukasi lingkungan untuk siswa sekolah dasar dan menengah.">
-
-            <img src="activity2.jpg" alt="">
-        </div>
-
-        <div class="card"
-            data-title="Community Service"
-            data-desc="Berkolaborasi dengan masyarakat dalam kegiatan sosial dan pemberdayaan desa.">
-
-            <img src="activity3.jpg" alt="">
-        </div>
-
-        <div class="card"
-            data-title="Waste Management"
-            data-desc="Mengajarkan pemilahan sampah dan pengolahan sampah organik menjadi kompos.">
-
-            <img src="activity4.jpg" alt="">
-        </div>
-
-        <div class="card"
-            data-title="Youth Leadership"
-            data-desc="Melatih generasi muda menjadi pemimpin yang peduli terhadap lingkungan dan masyarakat.">
-
-            <img src="activity5.jpg" alt="">
-        </div>
-
-    </div>
-
-    <div class="activity-info">
-
-        <h3 id="activity-title">
-            Tree Planting
-        </h3>
-
-        <p id="activity-desc">
-            Bersama masyarakat dan relawan menanam ratusan pohon untuk menjaga kelestarian lingkungan.
+      <div class="about-image">
+        <img src="foto.jpg" alt="Akar Nusa" />
+      </div>
+      <div class="about-text">
+        <h2>GYAF IB Awardee</h2>
+        <p>
+          Receiving the Global Youth Action Fund is a <b>meaningful recognition</b> that encourages us to keep <b>expanding our impact and empowering more young people to lead change.</b> We hope this support enables our programs to reach more schools and communities, creating a lasting positive impact for both people and the planet.
         </p>
+        <p><b> — AkarNusa</b></p>
+      </div>
+    </div>
+    <div class="about-container">
+      <div class="about-image">
+        <img src="foto.jpg" alt="Akar Nusa" />
+      </div>
+      <div class="about-text">
+        <h2>What is AkarNusa ?</h2>
+        <p>
+          <b>Akar Nusa is a non-profit organization focusing on the environment and education.</b> Our mission is to raise awareness and encourage the younger generation to take concrete action towards sustainable development. Our work has been recognized by the International Baccalaureate (IB), including through funding support and opportunities that have enabled us to further develop and expand our sustainability and education initiatives.
+          <br><br>
+          Akar Nusa's programs include Akar NuAction, Akar NuCycle, Akar Nusa Tales and GreenLeap.
+        </p>
+      </div>
+    </div>
+  </section>
 
+  <!-- ACTIVITIES -->
+  <section id="activities" class="activities">
+    <div class="section-title">
+      <h2>Our Activities</h2>
+      <p>Growing together through meaningful actions.</p>
     </div>
 
-</section>
+    <!-- COVERFLOW -->
+    <div class="coverflow">
+      <!-- GREENLEAP -->
+      <div class="card active"
+        data-title="GreenLeap"
+        data-short="Environmental education for young people."
+        data-long="GreenLeap is an environmental education program that empowers students through workshops, sustainability campaigns, environmental actions, and collaboration with schools."
+        data-instagram="https://instagram.com/akarnusa"
+        data-category="Education"
+        data-participants="120+"
+        data-list="Environmental Workshop|School Visit|Tree Planting|Awareness Campaign"
+        data-images="activity1.jpg,activity2.jpg,activity3.jpg,activity4.jpg">
+        <img src="activity1.jpg" alt="GreenLeap" />
+      </div>
+      <!-- AKAR NUCYCLE -->
+      <div class="card"
+        data-title="Akar NuCycle"
+        data-short="Waste management initiative."
+        data-long="Akar NuCycle teaches communities about waste sorting, recycling, composting, and sustainable waste management."
+        data-instagram="https://instagram.com/akarnusa"
+        data-category="Environment"
+        data-participants="80+"
+        data-list="Waste Sorting|Plastic Recycling|Composting|Public Education"
+        data-images="activity2.jpg,activity3.jpg,activity4.jpg,activity5.jpg">
+        <img src="activity2.jpg" alt="Akar NuCycle" />
+      </div>
+      <!-- AKAR NUACTION -->
+      <div class="card"
+        data-title="Akar NuAction"
+        data-short="Community environmental action."
+        data-long="Akar NuAction invites volunteers to directly participate in restoring ecosystems through environmental projects."
+        data-instagram="https://instagram.com/akarnusa"
+        data-category="Community"
+        data-participants="150+"
+        data-list="Tree Planting|River Cleanup|Volunteer Day|Community Service"
+        data-images="activity3.jpg,activity4.jpg,activity5.jpg,activity1.jpg">
+        <img src="activity3.jpg" alt="Akar NuAction" />
+      </div>
+      <!-- TALES -->
+      <div class="card"
+        data-title="Akar Nusa Tales"
+        data-short="Creative storytelling."
+        data-long="Akar Nusa Tales inspires environmental awareness through storytelling, creative media, and educational content."
+        data-instagram="https://instagram.com/akarnusa"
+        data-category="Creative"
+        data-participants="60+"
+        data-list="Storytelling|Podcast|Educational Content|Discussion"
+        data-images="activity4.jpg,activity5.jpg,activity1.jpg,activity2.jpg">
+        <img src="activity4.jpg" alt="Akar Nusa Tales" />
+      </div>
+      <!-- TREE PLANTING -->
+      <div class="card"
+        data-title="Tree Planting"
+        data-short="Greening our future."
+        data-long="Together with students and communities, we plant trees to restore green spaces and build environmental awareness."
+        data-instagram="https://instagram.com/akarnusa"
+        data-category="Environment"
+        data-participants="200+"
+        data-list="Planting Trees|Monitoring|Maintenance|Education"
+        data-images="01.jpg,activity1.jpg,activity2.jpg,activity3.jpg">
+        <img src="01.jpg" alt="Tree Planting" />
+      </div>
+    </div>
 
-<section id="contact" class="contact">
+    <!-- INFO BAWAH COVERFLOW -->
+    <div class="activity-info">
+      <h3 id="activity-title">GreenLeap</h3>
+      <p id="activity-desc">Environmental education for young people.</p>
+    </div>
 
-<h2>Contact</h2>
+    <!-- OVERLAY DETAIL -->
+    <div id="activityOverlay" class="activity-overlay">
+      <div class="activity-window">
+        <button id="closeOverlay" class="close-btn">✕</button>
 
-<p>📧 email@example.com</p>
-<p>📱 +62 812 3456 7890</p>
-<p>📍 Indonesia</p>
+        <!-- LEFT: GALLERY -->
+        <div class="overlay-left">
+          <div class="main-image">
+            <img id="overlayMainImage" src="activity1.jpg" alt="Activity" />
+          </div>
+          <div id="thumbnailContainer" class="thumbnail-container"></div>
+        </div>
 
-</section>
+        <!-- RIGHT: CONTENT -->
+        <div class="overlay-right">
+          <span class="program-label">AKAR NUSA PROGRAM</span>
+          <h2 id="overlayTitle">GreenLeap</h2>
+          <p class="description" id="overlayDescription">GreenLeap is an environmental education program that empowers students through workshops, sustainability campaigns, environmental actions, and collaboration with schools.</p>
 
-<footer>
-© 2026 My Website
-</footer>
+          <div class="divider"></div>
 
-<script>
+          <h3>What We Did</h3>
+          <ul id="overlayList"></ul>
 
-const navbar=document.getElementById("navbar");
+          <div class="divider"></div>
 
-window.addEventListener("scroll",()=>{
+          <div class="program-information">
+            <div class="info-card">
+              <h4>Category</h4>
+              <p id="overlayCategory">Education</p>
+            </div>
+            <div class="info-card">
+              <h4>Participants</h4>
+              <p id="overlayParticipants">120+</p>
+            </div>
+          </div>
 
-if(window.scrollY>80){
-navbar.classList.add("scrolled");
-}else{
-navbar.classList.remove("scrolled");
-}
+          <a id="instagramLink" class="instagram-button" href="#" target="_blank">
+            <span>📷</span> View on Instagram
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-});
+  <!-- CONTACT -->
+  <section id="contact" class="contact">
+    <h2>Contact</h2>
+    <p>📧 email@example.com</p>
+    <p>📱 +62 812 3456 7890</p>
+    <p>📍 Indonesia</p>
+  </section>
 
-/* COVERFLOW CAROUSEL*/
+  <footer>© 2026 My Website</footer>
 
+  <script>
+    (function() {
+      "use strict";
+
+      // ---------- NAVBAR ----------
+      const navbar = document.getElementById("navbar");
+      window.addEventListener("scroll", () => {
+        navbar.classList.toggle("scrolled", window.scrollY > 80);
+      });
+
+      // ---------- HERO SLIDER ----------
+      const slides = document.querySelectorAll(".hero .slide");
+      const dots = document.querySelectorAll(".hero .dot");
+      let currentSlide = 0;
+      let slideInterval;
+
+      function goToSlide(index) {
+        slides.forEach((s, i) => s.classList.toggle("active", i === index));
+        dots.forEach((d, i) => d.classList.toggle("active", i === index));
+        currentSlide = index;
+      }
+
+      function nextSlide() {
+        goToSlide((currentSlide + 1) % slides.length);
+      }
+
+      function startSlideShow() {
+        clearInterval(slideInterval);
+        slideInterval = setInterval(nextSlide, 4000);
+      }
+
+      dots.forEach((dot, i) => {
+        dot.addEventListener("click", () => {
+          goToSlide(i);
+          startSlideShow();
+        });
+      });
+      startSlideShow();
+
+      // ---------- COVERFLOW ----------
+      const cards = document.querySelectorAll(".coverflow .card");
+      const titleEl = document.getElementById("activity-title");
+      const descEl = document.getElementById("activity-desc");
+      let currentCard = 0;
+
+      function updateCarousel() {
+        cards.forEach(c => c.classList.remove("active", "left", "right", "hide-left", "hide-right"));
+        const total = cards.length;
+        const left = (currentCard - 1 + total) % total;
+        const right = (currentCard + 1) % total;
+        const hideLeft = (currentCard - 2 + total) % total;
+        const hideRight = (currentCard + 2) % total;
+
+        cards[currentCard].classList.add("active");
+        cards[left].classList.add("left");
+        cards[right].classList.add("right");
+        cards[hideLeft].classList.add("hide-left");
+        cards[hideRight].classList.add("hide-right");
+
+        titleEl.textContent = cards[currentCard].dataset.title;
+        descEl.textContent = cards[currentCard].dataset.short;
+      }
+      updateCarousel();
+
+      // ---------- OVERLAY ----------
+      const overlay = document.getElementById("activityOverlay");
+      const closeBtn = document.getElementById("closeOverlay");
+      const overlayTitle = document.getElementById("overlayTitle");
+      const overlayDesc = document.getElementById("overlayDescription");
+      const overlayMainImage = document.getElementById("overlayMainImage");
+      const overlayList = document.getElementById("overlayList");
+      const overlayCategory = document.getElementById("overlayCategory");
+      const overlayParticipants = document.getElementById("overlayParticipants");
+      const instagramLink = document.getElementById("instagramLink");
+      const thumbnailContainer = document.getElementById("thumbnailContainer");
+
+      let currentImages = [];
+      let currentImageIndex = 0;
+      let galleryTimer;
+
+      function buildThumbnails() {
+        thumbnailContainer.innerHTML = "";
+        currentImages.forEach((img, idx) => {
+          const thumb = document.createElement("img");
+          thumb.src = img;
+          if (idx === 0) thumb.classList.add("active");
+          thumb.addEventListener("click", () => changeImage(idx));
+          thumbnailContainer.appendChild(thumb);
+        });
+      }
+
+      function changeImage(index) {
+        currentImageIndex = index;
+        overlayMainImage.classList.add("change");
+        setTimeout(() => {
+          overlayMainImage.src = currentImages[index];
+          overlayMainImage.classList.remove("change");
+        }, 180);
+
+        document.querySelectorAll("#thumbnailContainer img").forEach((thumb, i) => {
+          thumb.classList.toggle("active", i === index);
+        });
+      }
+
+      function openOverlay(card) {
+        overlay.classList.add("show");
+        overlayTitle.textContent = card.dataset.title;
+        overlayDesc.textContent = card.dataset.long;
+        overlayCategory.textContent = card.dataset.category;
+        overlayParticipants.textContent = card.dataset.participants;
+        instagramLink.href = card.dataset.instagram;
+
+        overlayList.innerHTML = "";
+        card.dataset.list.split("|").forEach(item => {
+          const li = document.createElement("li");
+          li.textContent = item;
+          overlayList.appendChild(li);
+        });
+
+        currentImages = card.dataset.images.split(",");
+        currentImageIndex = 0;
+        overlayMainImage.src = currentImages[0];
+        buildThumbnails();
+        startGalleryAutoPlay();
+      }
+
+      function closeActivityOverlay() {
+        overlay.classList.remove("show");
+        clearInterval(galleryTimer);
+      }
+
+      closeBtn.addEventListener("click", closeActivityOverlay);
+      overlay.addEventListener("click", (e) => {
+        if (e.target === overlay) closeActivityOverlay();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeActivityOverlay();
+      });
+
+      // Keyboard arrows
+      document.addEventListener("keydown", (e) => {
+        if (!overlay.classList.contains("show")) return;
+        if (e.key === "ArrowRight") {
+          e.preventDefault();
+          currentImageIndex = (currentImageIndex + 1) % currentImages.length;
+          changeImage(currentImageIndex);
+        }
+        if (e.key === "ArrowLeft") {
+          e.preventDefault();
+          currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+          changeImage(currentImageIndex);
+        }
+      });
+
+      // Touch swipe
+      let startX = 0;
+      overlayMainImage.addEventListener("touchstart", (e) => {
+        startX = e.touches[0].clientX;
+      });
+      overlayMainImage.addEventListener("touchend", (e) => {
+        const endX = e.changedTouches[0].clientX;
+        const diff = startX - endX;
+        if (Math.abs(diff) < 50) return;
+        if (diff > 0) {
+          currentImageIndex = (currentImageIndex + 1) % currentImages.length;
+        } else {
+          currentImageIndex = (currentImageIndex - 1 + currentImages.length) % currentImages.length;
+        }
+        changeImage(currentImageIndex);
+      });
+
+      // Auto play gallery
+      function startGalleryAutoPlay() {
+        clearInterval(galleryTimer);
+        galleryTimer = setInterval(() => {
+          if (!overlay.classList.contains("show")) return;
+          currentImageIndex = (currentImageIndex + 1) % currentImages.length;
+          changeImage(currentImageIndex);
+        }, 4000);
+      }
+
+      overlay.addEventListener("mouseenter", () => clearInterval(galleryTimer));
+      overlay.addEventListener("mouseleave", startGalleryAutoPlay);
+
+      // Card click
+      cards.forEach((card, index) => {
+        card.addEventListener("click", () => {
+          if (index !== currentCard) {
+            currentCard = index;
+            updateCarousel();
+            return;
+          }
+          openOverlay(card);
+        });
+      });
+
+    })();
+    // =====================================================
+// COVERFLOW (tanpa dots indicator)
+// =====================================================
 const cards = document.querySelectorAll(".coverflow .card");
-
-const title = document.getElementById("activity-title");
-const desc = document.getElementById("activity-desc");
-
+const titleEl = document.getElementById("activity-title");
+const descEl = document.getElementById("activity-desc");
 let currentCard = 0;
+let coverflowInterval;
+let isCoverflowPaused = false;
 
-function updateCarousel(){
+// Fungsi untuk update posisi card
+function updateCarousel() {
+  cards.forEach(c => c.classList.remove("active", "left", "right", "hide-left", "hide-right"));
+  const total = cards.length;
+  const left = (currentCard - 1 + total) % total;
+  const right = (currentCard + 1) % total;
+  const hideLeft = (currentCard - 2 + total) % total;
+  const hideRight = (currentCard + 2) % total;
 
-    cards.forEach(card=>{
-        card.classList.remove(
-            "active",
-            "left",
-            "right",
-            "hide-left",
-            "hide-right"
-        );
-    });
+  cards[currentCard].classList.add("active");
+  cards[left].classList.add("left");
+  cards[right].classList.add("right");
+  cards[hideLeft].classList.add("hide-left");
+  cards[hideRight].classList.add("hide-right");
 
-    const total = cards.length;
-
-    const left =
-        (currentCard-1+total)%total;
-
-    const right =
-        (currentCard+1)%total;
-
-    const hideLeft =
-        (currentCard-2+total)%total;
-
-    const hideRight =
-        (currentCard+2)%total;
-
-    cards[currentCard].classList.add("active");
-    cards[left].classList.add("left");
-    cards[right].classList.add("right");
-    cards[hideLeft].classList.add("hide-left");
-    cards[hideRight].classList.add("hide-right");
-
-    title.textContent =
-        cards[currentCard].dataset.title;
-
-    desc.textContent =
-        cards[currentCard].dataset.desc;
-
+  titleEl.textContent = cards[currentCard].dataset.title;
+  descEl.textContent = cards[currentCard].dataset.short;
 }
 
-/* Klik Foto */
-
-cards.forEach((card,index)=>{
-
-    card.addEventListener("click",()=>{
-
-        currentCard=index;
-
-        updateCarousel();
-
-        resetAutoSlide();
-
-    });
-
-});
-
-/* Auto Slide */
-
-let autoSlide = setInterval(nextSlide,5000);
-
-function nextSlide(){
-
-    currentCard++;
-
-    if(currentCard>=cards.length){
-
-        currentCard=0;
-
-    }
-
+// Fungsi untuk pindah ke card berikutnya
+function nextCard() {
+  if (!isCoverflowPaused) {
+    currentCard = (currentCard + 1) % cards.length;
     updateCarousel();
-
+  }
 }
 
-/* Reset Timer Setelah Klik */
-
-function resetAutoSlide(){
-
-    clearInterval(autoSlide);
-
-    autoSlide=setInterval(nextSlide,5000);
-
+// =====================================================
+// INI YANG PENTING: AUTO-PLAY SETIAP 3 DETIK
+// =====================================================
+function startCoverflowAutoPlay() {
+  clearInterval(coverflowInterval); // Hapus interval lama
+  coverflowInterval = setInterval(nextCard, 3000); // Jalankan nextCard setiap 3 detik
 }
 
-/* Jalankan Pertama */
-
+// Inisialisasi
 updateCarousel();
+startCoverflowAutoPlay(); // <-- Ini yang menjalankan auto-slide
 
-const slides=document.querySelectorAll(".slide");
-const dots=document.querySelectorAll(".dot");
-
-let current=0;
-
-function showSlide(index){
-
-slides.forEach(slide=>slide.classList.remove("active"));
-dots.forEach(dot=>dot.classList.remove("active"));
-
-slides[index].classList.add("active");
-dots[index].classList.add("active");
-
-current=index;
-
-}
-
-dots.forEach((dot,index)=>{
-
-dot.addEventListener("click",()=>{
-
-showSlide(index);
-
+// Hover pause (berhenti saat di-hover)
+const coverflowEl = document.querySelector(".coverflow");
+coverflowEl.addEventListener("mouseenter", () => {
+  isCoverflowPaused = true;
+  clearInterval(coverflowInterval);
 });
-
+coverflowEl.addEventListener("mouseleave", () => {
+  isCoverflowPaused = false;
+  startCoverflowAutoPlay(); // <-- Jalankan lagi setelah hover
 });
-
-setInterval(()=>{
-
-current++;
-
-if(current>=slides.length){
-current=0;
-}
-
-showSlide(current);
-
-},4000);
-
-</script>
-
+  </script>
 </body>
 </html>
