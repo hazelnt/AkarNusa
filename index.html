@@ -177,102 +177,164 @@
     .about-text b {
       color: #1F6E43;
     }
+    .mint {
+      color: #24eb9b;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .blue {
+      color: #3f9ec0;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .rainbow {
+      background: linear-gradient(90deg, #FF6B6B, #FFD93D, #6BCB77, #4D96FF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .green {
+      color: #51d337;
+      text-decoration: none;
+      font-weight: bold;
+    }
+     .hero-content h1{
+      background: linear-gradient(90deg, #1a8629,  #f4b325);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: bold;
+      text-decoration: none;
+    }
+/* ---------- ACTIVITIES ---------- */
 
-    /* ---------- ACTIVITIES ---------- */
-    .activities {
-      padding: 90px 5%;
-      background: #F8F6F1;
-      overflow: hidden;
-    }
-    .section-title {
-      text-align: center;
-      margin-bottom: 50px;
-    }
-    .section-title h2 {
-      font-size: 42px;
-      color: #1F6E43;
-      margin-bottom: 10px;
-    }
-    .section-title p {
-      color: #666;
-      font-size: 18px;
-    }
+.activities {
+  padding: 0 5% 60px;
+  margin-top: -70px;
+  background: #F8F6F1;
+  overflow: hidden;
+}
 
-    /* ---------- COVERFLOW ---------- */
-    .coverflow {
-      position: relative;
-      width: 100%;
-      height: 320px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      perspective: 1400px;
-      overflow: hidden;
-    }
-    .card {
-      position: absolute;
-      width: 190px;
-      height: 250px;
-      border-radius: 22px;
-      overflow: hidden;
-      background: #fff;
-      cursor: pointer;
-      transition: transform 0.7s ease, opacity 0.7s ease, filter 0.7s ease,
-        box-shadow 0.7s ease;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.18);
-    }
-    .card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .card.active {
-      transform: translateX(0) scale(1.1);
-      opacity: 1;
-      filter: none;
-      z-index: 20;
-    }
-    .card.left {
-      transform: translateX(-190px) scale(0.82) rotateY(18deg);
-      opacity: 0.55;
-      filter: blur(2px);
-      z-index: 10;
-    }
-    .card.right {
-      transform: translateX(190px) scale(0.82) rotateY(-18deg);
-      opacity: 0.55;
-      filter: blur(2px);
-      z-index: 10;
-    }
-    .card.hide-left {
-      transform: translateX(-360px) scale(0.62);
-      opacity: 0;
-      z-index: 1;
-    }
-    .card.hide-right {
-      transform: translateX(360px) scale(0.62);
-      opacity: 0;
-      z-index: 1;
-    }
-    .card:hover {
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.22);
-    }
+.section-title {
+  text-align: center;
+  margin-bottom: 15px;
+}
 
-    .activity-info {
-      width: 75%;
-      margin: 55px auto 0;
-      text-align: center;
-    }
-    .activity-info h3 {
-      font-size: 34px;
-      color: #1F6E43;
-      margin-bottom: 18px;
-    }
-    .activity-info p {
-      font-size: 18px;
-      color: #666;
-      line-height: 1.8;
-    }
+.section-title h2 {
+  font-size: 42px;
+  color: #1F6E43;
+  margin-bottom: 6px;
+}
+
+.section-title p {
+  color: #666;
+  font-size: 18px;
+}
+
+
+/* ---------- COVERFLOW ---------- */
+
+.coverflow {
+  position: relative;
+  width: 100%;
+  height: 330px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1200px;
+  overflow: hidden;
+}
+
+.coverflow .card {
+  position: absolute;
+  width: 210px;
+  height: 280px;
+
+  /* BIKIN SUDUT BULAT */
+  border-radius: 20px;
+  overflow: hidden;
+
+  cursor: pointer;
+
+  /* PERPINDAHAN LEBIH CEPAT */
+  transition:
+    transform 0.35s ease,
+    opacity 0.35s ease,
+    filter 0.35s ease;
+     will-change: transform, opacity, filter;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* GAMBAR */
+.coverflow .card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: inherit;
+}
+
+
+/* ACTIVE */
+.coverflow .card.active {
+  transform: translateX(0) scale(1);
+  opacity: 1;
+  z-index: 3;
+  filter: blur(0);
+  pointer-events: auto;
+}
+
+
+/* ACTIVE SAAT MOUSE DI ATAS */
+.coverflow .card.active:hover {
+  transform: translateX(0) scale(1.05);
+}
+
+
+/* KIRI */
+.coverflow .card.left {
+  transform: translateX(-210px) scale(0.82);
+  opacity: 0.45;
+  z-index: 2;
+  filter: blur(2px);
+  pointer-events: auto;
+}
+
+.coverflow .card.right {
+  transform: translateX(210px) scale(0.82);
+  opacity: 0.45;
+  z-index: 2;
+  filter: blur(2px);
+  pointer-events: auto;
+}
+
+/* CARD LAINNYA */
+.coverflow .card:not(.active):not(.left):not(.right) {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+
+/* INFO DI BAWAH */
+.activity-info {
+  width: 75%;
+  margin: 5px auto 0;
+  text-align: center;
+}
+
+.activity-info h3 {
+  font-size: 34px;
+  color: #1F6E43;
+  margin-bottom: 8px;
+}
+
+.activity-info p {
+  font-size: 18px;
+  color: #666;
+  line-height: 1.5;
+}
 
     /* ---------- OVERLAY (diperbaiki sesuai contoh) ---------- */
     .activity-overlay {
@@ -477,12 +539,6 @@
       font-size: 14px;
     }
 
-    .program-information {
-      display: flex;
-      gap: 16px;
-      margin-top: 18px;
-      margin-bottom: 8px;
-    }
     .info-card {
       flex: 1;
       background: #f8f6f1;
@@ -568,10 +624,7 @@
       .overlay-right h2 {
         font-size: 30px;
       }
-      .program-information {
-        flex-direction: row;
-        flex-wrap: wrap;
-      }
+
       .info-card {
         flex: 1 1 40%;
       }
@@ -614,18 +667,13 @@
         width: 140px;
         height: 185px;
       }
-      .card.left {
-        transform: translateX(-120px) scale(0.78);
-      }
-      .card.right {
-        transform: translateX(120px) scale(0.78);
-      }
-      .card.hide-left {
-        transform: translateX(-230px) scale(0.55);
-      }
-      .card.hide-right {
-        transform: translateX(230px) scale(0.55);
-      }
+    .card.left {
+  transform: translateX(-210px) scale(0.82);
+}
+
+.card.right {
+  transform: translateX(210px) scale(0.82);
+}
       .activity-info {
         width: 95%;
         margin-top: 35px;
@@ -641,9 +689,6 @@
       }
       .overlay-right ul li {
         font-size: 14px;
-      }
-      .program-information {
-        flex-direction: column;
       }
       .info-card {
         flex: 1;
@@ -677,12 +722,6 @@
       }
       .card.right {
         transform: translateX(90px) scale(0.7);
-      }
-      .card.hide-left {
-        transform: translateX(-170px) scale(0.45);
-      }
-      .card.hide-right {
-        transform: translateX(170px) scale(0.45);
       }
       .coverflow {
         height: 180px;
@@ -735,7 +774,7 @@
     </div>
     <div class="slide">
       <div class="overlay"></div>
-      <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" alt="Slide 4" />
+      <img src="greenleap.jpeg" alt="Slide 4" />
     </div>
     <div class="hero-content">
       <h1>Akar Nusa</h1>
@@ -772,9 +811,12 @@
         <h2>What is AkarNusa ?</h2>
         <p>
           <b>Akar Nusa is a non-profit organization focusing on the environment and education.</b> Our mission is to raise awareness and encourage the younger generation to take concrete action towards sustainable development. Our work has been recognized by the International Baccalaureate (IB), including through funding support and opportunities that have enabled us to further develop and expand our sustainability and education initiatives.
-          <br><br>
-          Akar Nusa's programs include Akar NuAction, Akar NuCycle, Akar Nusa Tales and GreenLeap.
-        </p>
+          
+            Akar Nusa's programs include
+            <a href="#education" class="mint">Akar NuAction</a>,
+            <a href="#environment" class="blue">Akar NuCycle</a>,
+            <a href="#stories" class="rainbow">Akar Nusa Tales</a>, 
+            and <a href="#greenleap" class="green">GreenLeap</a>.
       </div>
     </div>
   </section>
@@ -789,23 +831,23 @@
     <!-- COVERFLOW -->
     <div class="coverflow">
       <!-- GREENLEAP -->
-      <div class="card active"
+     <div class="card active"
         data-title="GreenLeap"
+        data-label="GREENLEAP PROGRAM"
         data-short="Environmental education for young people."
         data-long="GreenLeap is an environmental education program that empowers students through workshops, sustainability campaigns, environmental actions, and collaboration with schools."
-        data-instagram="https://instagram.com/akarnusa"
         data-category="Education"
         data-participants="120+"
         data-list="Environmental Workshop|School Visit|Tree Planting|Awareness Campaign"
-        data-images="activity1.jpg,activity2.jpg,activity3.jpg,activity4.jpg">
-        <img src="activity1.jpg" alt="GreenLeap" />
+        data-images="IMG_8234.jpg,IMG_8228.jpg,IMG_8181.jpg,IMG_8279.jpg">
+        <img src="IMG_8234.jpg" alt="GreenLeap" />
       </div>
       <!-- AKAR NUCYCLE -->
       <div class="card"
         data-title="Akar NuCycle"
+        data-label="AKAR NUCYCLE PROGRAM"
         data-short="Waste management initiative."
         data-long="Akar NuCycle teaches communities about waste sorting, recycling, composting, and sustainable waste management."
-        data-instagram="https://instagram.com/akarnusa"
         data-category="Environment"
         data-participants="80+"
         data-list="Waste Sorting|Plastic Recycling|Composting|Public Education"
@@ -815,18 +857,19 @@
       <!-- AKAR NUACTION -->
       <div class="card"
         data-title="Akar NuAction"
+        data-label="AKAR NUACTION PROGRAM"
         data-short="Community environmental action."
         data-long="Akar NuAction invites volunteers to directly participate in restoring ecosystems through environmental projects."
-        data-instagram="https://instagram.com/akarnusa"
         data-category="Community"
         data-participants="150+"
         data-list="Tree Planting|River Cleanup|Volunteer Day|Community Service"
-        data-images="activity3.jpg,activity4.jpg,activity5.jpg,activity1.jpg">
-        <img src="activity3.jpg" alt="Akar NuAction" />
+        data-images="nuaction.jpeg,BF792313-94DB-49D3-AFB0-C859D0E57840.jpg,DSC09325.JPG,IMG_6298.jpg">
+        <img src="nuaction.jpeg" alt="Akar NuAction" />
       </div>
       <!-- TALES -->
       <div class="card"
         data-title="Akar Nusa Tales"
+        data-label="AKAR NUSA TALES PROGRAM"
         data-short="Creative storytelling."
         data-long="Akar Nusa Tales inspires environmental awareness through storytelling, creative media, and educational content."
         data-instagram="https://instagram.com/akarnusa"
@@ -839,6 +882,7 @@
       <!-- TREE PLANTING -->
       <div class="card"
         data-title="Tree Planting"
+        data-label="TREE PLANTING PROGRAM"
         data-short="Greening our future."
         data-long="Together with students and communities, we plant trees to restore green spaces and build environmental awareness."
         data-instagram="https://instagram.com/akarnusa"
@@ -848,8 +892,9 @@
         data-images="01.jpg,activity1.jpg,activity2.jpg,activity3.jpg">
         <img src="01.jpg" alt="Tree Planting" />
       </div>
+      
     </div>
-
+    
     <!-- INFO BAWAH COVERFLOW -->
     <div class="activity-info">
       <h3 id="activity-title">GreenLeap</h3>
@@ -871,8 +916,8 @@
 
         <!-- RIGHT: CONTENT -->
         <div class="overlay-right">
-          <span class="program-label">AKAR NUSA PROGRAM</span>
-          <h2 id="overlayTitle">GreenLeap</h2>
+        <span id="overlayLabel" class="program-label">GREENLEAP PROGRAM</span>
+        <h2 id="overlayTitle">GreenLeap</h2>
           <p class="description" id="overlayDescription">GreenLeap is an environmental education program that empowers students through workshops, sustainability campaigns, environmental actions, and collaboration with schools.</p>
 
           <div class="divider"></div>
@@ -881,21 +926,7 @@
           <ul id="overlayList"></ul>
 
           <div class="divider"></div>
-
-          <div class="program-information">
-            <div class="info-card">
-              <h4>Category</h4>
-              <p id="overlayCategory">Education</p>
-            </div>
-            <div class="info-card">
-              <h4>Participants</h4>
-              <p id="overlayParticipants">120+</p>
-            </div>
           </div>
-
-          <a id="instagramLink" class="instagram-button" href="#" target="_blank">
-            <span>📷</span> View on Instagram
-          </a>
         </div>
       </div>
     </div>
@@ -925,6 +956,7 @@
       const slides = document.querySelectorAll(".hero .slide");
       const dots = document.querySelectorAll(".hero .dot");
       let currentSlide = 0;
+      let coverflowInterval;
       let slideInterval;
 
       function goToSlide(index) {
@@ -956,24 +988,40 @@
       const descEl = document.getElementById("activity-desc");
       let currentCard = 0;
 
-      function updateCarousel() {
-        cards.forEach(c => c.classList.remove("active", "left", "right", "hide-left", "hide-right"));
-        const total = cards.length;
-        const left = (currentCard - 1 + total) % total;
-        const right = (currentCard + 1) % total;
-        const hideLeft = (currentCard - 2 + total) % total;
-        const hideRight = (currentCard + 2) % total;
+    function updateCarousel() {
+     const total = cards.length;
 
-        cards[currentCard].classList.add("active");
-        cards[left].classList.add("left");
-        cards[right].classList.add("right");
-        cards[hideLeft].classList.add("hide-left");
-        cards[hideRight].classList.add("hide-right");
+     cards.forEach(c => {
+      c.classList.remove(
+      "active",
+      "left",
+      "right",
+      "hide-left",
+      "hide-right"
+    );
+  });
 
-        titleEl.textContent = cards[currentCard].dataset.title;
-        descEl.textContent = cards[currentCard].dataset.short;
-      }
+  const left = (currentCard - 1 + total) % total;
+  const right = (currentCard + 1) % total;
+
+  // Card tengah
+  cards[currentCard].classList.add("active");
+
+  // Card kiri dan kanan
+  cards[left].classList.add("left");
+  cards[right].classList.add("right");
+
+  // Nama dan deskripsi
+  titleEl.textContent = cards[currentCard].dataset.title;
+  descEl.textContent = cards[currentCard].dataset.short;
+}
       updateCarousel();
+      function nextCard() {
+      currentCard = (currentCard + 1) % cards.length;
+       updateCarousel();
+       }
+
+coverflowInterval = setInterval(nextCard, 3000);
 
       // ---------- OVERLAY ----------
       const overlay = document.getElementById("activityOverlay");
@@ -982,9 +1030,6 @@
       const overlayDesc = document.getElementById("overlayDescription");
       const overlayMainImage = document.getElementById("overlayMainImage");
       const overlayList = document.getElementById("overlayList");
-      const overlayCategory = document.getElementById("overlayCategory");
-      const overlayParticipants = document.getElementById("overlayParticipants");
-      const instagramLink = document.getElementById("instagramLink");
       const thumbnailContainer = document.getElementById("thumbnailContainer");
 
       let currentImages = [];
@@ -1019,9 +1064,7 @@
         overlay.classList.add("show");
         overlayTitle.textContent = card.dataset.title;
         overlayDesc.textContent = card.dataset.long;
-        overlayCategory.textContent = card.dataset.category;
-        overlayParticipants.textContent = card.dataset.participants;
-        instagramLink.href = card.dataset.instagram;
+        document.getElementById("overlayLabel").textContent = card.dataset.label;
 
         overlayList.innerHTML = "";
         card.dataset.list.split("|").forEach(item => {
@@ -1097,76 +1140,26 @@
 
       // Card click
       cards.forEach((card, index) => {
-        card.addEventListener("click", () => {
-          if (index !== currentCard) {
-            currentCard = index;
-            updateCarousel();
-            return;
-          }
-          openOverlay(card);
-        });
-      });
+  card.addEventListener("click", () => {
+
+  if (index !== currentCard) {
+    clearInterval(coverflowInterval);
+
+    currentCard = index;
+    updateCarousel();
+
+    coverflowInterval = setTimeout(() => {
+      coverflowInterval = setInterval(nextCard, 3000);
+    }, 200);
+
+    return;
+  }
+
+  openOverlay(card);
+});
+});
 
     })();
-    // =====================================================
-// COVERFLOW (tanpa dots indicator)
-// =====================================================
-const cards = document.querySelectorAll(".coverflow .card");
-const titleEl = document.getElementById("activity-title");
-const descEl = document.getElementById("activity-desc");
-let currentCard = 0;
-let coverflowInterval;
-let isCoverflowPaused = false;
-
-// Fungsi untuk update posisi card
-function updateCarousel() {
-  cards.forEach(c => c.classList.remove("active", "left", "right", "hide-left", "hide-right"));
-  const total = cards.length;
-  const left = (currentCard - 1 + total) % total;
-  const right = (currentCard + 1) % total;
-  const hideLeft = (currentCard - 2 + total) % total;
-  const hideRight = (currentCard + 2) % total;
-
-  cards[currentCard].classList.add("active");
-  cards[left].classList.add("left");
-  cards[right].classList.add("right");
-  cards[hideLeft].classList.add("hide-left");
-  cards[hideRight].classList.add("hide-right");
-
-  titleEl.textContent = cards[currentCard].dataset.title;
-  descEl.textContent = cards[currentCard].dataset.short;
-}
-
-// Fungsi untuk pindah ke card berikutnya
-function nextCard() {
-  if (!isCoverflowPaused) {
-    currentCard = (currentCard + 1) % cards.length;
-    updateCarousel();
-  }
-}
-
-// =====================================================
-// INI YANG PENTING: AUTO-PLAY SETIAP 3 DETIK
-// =====================================================
-function startCoverflowAutoPlay() {
-  clearInterval(coverflowInterval); // Hapus interval lama
-  coverflowInterval = setInterval(nextCard, 3000); // Jalankan nextCard setiap 3 detik
-}
-
-// Inisialisasi
-updateCarousel();
-startCoverflowAutoPlay(); // <-- Ini yang menjalankan auto-slide
-
-// Hover pause (berhenti saat di-hover)
-const coverflowEl = document.querySelector(".coverflow");
-coverflowEl.addEventListener("mouseenter", () => {
-  isCoverflowPaused = true;
-  clearInterval(coverflowInterval);
-});
-coverflowEl.addEventListener("mouseleave", () => {
-  isCoverflowPaused = false;
-  startCoverflowAutoPlay(); // <-- Jalankan lagi setelah hover
-});
   </script>
 </body>
 </html>
