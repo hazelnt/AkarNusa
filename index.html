@@ -338,6 +338,7 @@
 
     /* ---------- OVERLAY (diperbaiki sesuai contoh) ---------- */
     .activity-overlay {
+    z-index: 12000;
       position: fixed;
       inset: 0;
       background: rgba(0, 0, 0, 0.7);
@@ -346,7 +347,7 @@
       justify-content: center;
       align-items: center;
       padding: 30px;
-      z-index: 9999;
+      z-index: 30000;
     }
     .activity-overlay.show {
       display: flex;
@@ -1547,7 +1548,455 @@
         max-height: 180px;
       }
     }
-  </style>
+  /* =====================================================
+   MODERN DEPARTMENTS / FOUNDERS / PEOPLE
+===================================================== */
+
+/* ---------- DEPARTMENT SECTION ---------- */
+.departments-modern{
+  padding:110px 7% 80px;
+  background:#f7f8f3;
+}
+.modern-section-heading{
+  max-width:760px;
+  margin:0 auto 55px;
+}
+.modern-section-heading:not(.compact){
+  text-align:center;
+}
+.modern-section-heading>span{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:3px;
+  color:#65806b;
+}
+.modern-section-heading h2{
+  margin:12px 0 20px;
+  font-size:clamp(40px,5vw,65px);
+  line-height:.95;
+  color:#1f3025;
+}
+.modern-section-heading h2 em{
+  font-style:normal;
+  color:#65806b;
+}
+.modern-section-heading p{
+  max-width:650px;
+  margin:0 auto;
+  color:#707771;
+  line-height:1.8;
+}
+.modern-section-heading.compact{
+  text-align:center;
+  margin-top:90px;
+  margin-bottom:35px;
+}
+.modern-section-heading.compact p{margin-inline:auto}
+
+/* SIMPLE RECTANGULAR DEPARTMENT BUTTONS */
+.department-list-modern{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+  max-width:1100px;
+  margin:0 auto;
+}
+.department-block{
+  background:#fff;
+  border:1px solid rgba(31,48,37,.12);
+  border-radius:0;
+  padding:28px 30px;
+  cursor:pointer;
+  box-shadow:0 8px 24px rgba(31,48,37,.05);
+  transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;
+}
+.department-block:hover{
+  transform:translateY(-4px);
+  border-color:#9db4a2;
+  box-shadow:0 16px 35px rgba(31,48,37,.1);
+}
+.department-block-head{
+  display:block;
+}
+.department-block-head h3{
+  margin:0;
+  font-size:clamp(25px,3vw,38px);
+  line-height:1.05;
+  color:#1f3025;
+}
+.department-block-head p{
+  margin:10px 0 0;
+  max-width:720px;
+  color:#7a827c;
+  font-size:12px;
+  line-height:1.65;
+}
+.department-open-label{
+  display:inline-block;
+  margin-top:18px;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:1.7px;
+  color:#65806b;
+}
+
+/* PEOPLE / FOUNDER CARDS */
+.member-card,.founder-card,.people-card{
+  border:1px solid #e1e6e1;
+  background:#fff;
+  overflow:hidden;
+}
+.person-photo{
+  width:100%;
+  aspect-ratio:1/1;
+  overflow:hidden;
+  background:#edf1ed;
+}
+.person-photo img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .5s ease;
+}
+.member-card:hover .person-photo img,.founder-card:hover .person-photo img,.people-card:hover .person-photo img{transform:scale(1.04)}
+.person-meta{padding:14px 15px 16px}
+.person-meta h4{font-size:16px;color:#1f3025;margin-bottom:5px}
+.person-meta span{font-size:11px;color:#788178}
+.founder-grid{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:12px}
+.founder-card .person-meta{padding:10px}
+.founder-card .person-meta h4{font-size:14px}
+.people-section{margin-top:20px}
+.people-carousel-wrap{position:relative;display:flex;align-items:center;gap:12px}
+.people-carousel{overflow:hidden;flex:1}
+.people-track{display:flex;gap:18px;transition:transform .65s cubic-bezier(.22,.61,.36,1);will-change:transform}
+.people-card{flex:0 0 calc((100% - 54px)/4)}
+.people-nav{width:42px;height:42px;border:1px solid #ccd5cd;background:#fff;color:#1f3025;font-size:28px;cursor:pointer;display:grid;place-items:center;transition:.25s}
+.people-nav:hover{background:#1f3025;color:#fff}
+.people-dots{display:flex;justify-content:center;gap:7px;margin-top:22px}
+.people-dot{width:7px;height:7px;border-radius:50%;border:0;background:#c7d0c8;cursor:pointer}
+.people-dot.active{background:#65806b;transform:scale(1.25)}
+
+/* ---------- DEPARTMENT POPUP: intentionally different from the activity popup ---------- */
+.department-modal{
+  position:fixed;
+  pointer-events:none;inset:0;z-index:11000;
+  display:flex;align-items:center;justify-content:center;
+  padding:24px;opacity:0;visibility:hidden;
+  transition:opacity .25s ease,visibility .25s ease;
+}
+.department-modal.active{opacity:1;visibility:visible;pointer-events:auto}
+.department-modal-backdrop{
+  position:absolute;inset:0;
+  background:rgba(20,32,24,.72);
+  backdrop-filter:blur(8px);
+}
+.department-modal-window{
+  position:relative;z-index:20;
+  width:min(1050px,100%);
+  max-height:92vh;
+  overflow-y:auto;
+  background:#f8f9f4;
+  border:1px solid rgba(255,255,255,.5);
+  border-radius:0;
+  box-shadow:0 30px 90px rgba(0,0,0,.28);
+  padding:52px;
+  transform:translateY(18px) scale(.97);
+  transition:transform .3s ease;
+}
+.department-modal.active .department-modal-window{transform:translateY(0) scale(1)}
+.department-modal-close{
+  position:absolute;right:20px;top:20px;
+  width:42px;height:42px;border:1px solid #d9dfd8;
+  background:#fff;color:#26372c;border-radius:50%;
+  font-size:24px;cursor:pointer;transition:.2s;z-index:50;pointer-events:auto;
+}
+.department-modal-close:hover{transform:rotate(90deg);background:#1f3025;color:#fff}
+.department-modal-header{text-align:center;max-width:720px;margin:0 auto 22px}
+.department-modal-header .eyebrow{font-size:10px;font-weight:700;letter-spacing:3px;color:#65806b}
+.department-modal-header h2{margin:10px 0 12px;font-size:clamp(38px,5vw,62px);line-height:.98;color:#1f3025}
+.department-modal-header p{font-size:13px;line-height:1.75;color:#707771;max-width:620px;margin:0 auto}
+.department-modal-section{margin-top:22px}
+.department-modal-section-title{text-align:center;margin-bottom:18px}
+.department-modal-section-title h3{margin:0;font-size:18px;color:#26372c}
+.department-modal-section-title span{display:block;margin-top:5px;font-size:9px;letter-spacing:2px;color:#8b918d}
+.department-leader-section{margin-top:4px;margin-bottom:22px}.department-leaders{display:flex;justify-content:center;gap:18px;flex-wrap:wrap}
+.department-leader-card{
+  width:min(100%,390px);background:#fff;border:1px solid #dfe5df;
+  padding:18px;text-align:center;
+}
+.department-leader-card .person-photo{width:145px;height:145px;margin:0 auto;border-radius:50%}
+.department-leader-card .person-meta{padding:13px 8px 5px}
+.department-leader-card .person-meta h4{font-size:21px;margin:6px 0 4px}
+.department-leader-card .person-meta p{font-size:12px;line-height:1.65;color:#707771;margin-top:8px}
+.department-members-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.department-activities-popup{margin-top:24px}
+.department-activities-popup .department-program-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.department-activities-popup .department-program-card{position:relative;z-index:2;display:grid;grid-template-columns:42% 58%;min-height:175px;overflow:hidden;background:#eef0ea;text-decoration:none;border-radius:18px;transition:transform .3s ease,box-shadow .3s ease;cursor:pointer}
+.department-activities-popup .department-program-card:hover{transform:translateY(-5px);box-shadow:0 15px 35px rgba(0,0,0,.08)}
+.department-activities-popup .department-program-image{min-height:175px;overflow:hidden}
+.department-activities-popup .department-program-image img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+.department-activities-popup .department-program-card:hover .department-program-image img{transform:scale(1.05)}
+.department-activities-popup .department-program-info{padding:20px;display:flex;flex-direction:column;justify-content:center}
+.department-activities-popup .department-program-info h4{margin:0 0 7px;font-size:18px;color:#24352a}
+.department-activities-popup .department-program-info p{margin:0 0 13px;font-size:10px;line-height:1.6;color:#737a74}
+.department-activities-popup .department-program-info span{font-size:9px;font-weight:700;letter-spacing:1px;color:#477a55}
+.department-empty{padding:18px;background:#fff;border:1px solid #e1e6e1;color:#737a74;font-size:12px;line-height:1.7;text-align:center}
+
+.activities .section-title{text-align:center;max-width:760px;margin:0 auto 20px}.activities .section-title h2{font-size:clamp(40px,5vw,65px);line-height:.95;color:#1f3025;margin:12px 0 20px}.activities .section-title p{color:#707771;line-height:1.8}.activity-dots{display:flex;justify-content:center;align-items:center;gap:8px;margin:10px 0 28px}.activity-dot{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:#c7d0c8;opacity:.7;cursor:pointer;transition:transform .3s ease,background .3s ease,opacity .3s ease}.activity-dot.active{background:#1f6e43;opacity:1;transform:scale(1.25)}.contact-modern{background:#1f4433;color:#fff;padding:80px 7%;text-align:center}.contact-inner>span{font-size:10px;letter-spacing:3px;font-weight:700;opacity:.75}.contact-inner h2{font-size:clamp(34px,4vw,54px);margin:12px 0 30px}.social-links{display:flex;justify-content:center;align-items:center;gap:22px}.social-icon{width:48px;height:48px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.35);transition:transform .25s,background .25s}.social-icon img{width:23px;height:23px;object-fit:contain}.social-icon:hover{transform:translateY(-4px);background:rgba(255,255,255,.12)}
+@media(max-width:1000px){.founder-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.member-area{grid-template-columns:repeat(3,minmax(0,1fr))}.people-card{flex-basis:calc((100% - 18px)/2)}}@media(max-width:700px){.departments-modern{padding:75px 20px 60px}.department-block{padding:20px}.department-block-head{display:block}.department-block-head h3{margin-top:8px}.leader-card{display:block}.leader-card .person-photo{width:100%;height:auto;aspect-ratio:1/1}.member-area{grid-template-columns:repeat(2,minmax(0,1fr))}.founder-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.people-card{flex-basis:100%}.people-nav{width:36px;height:36px;font-size:24px}.social-links{gap:12px}.social-icon{width:42px;height:42px}}
+
+
+
+@media(max-width:1000px){
+  .department-members-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .founder-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .people-card{flex-basis:calc((100% - 18px)/2)}
+  .department-activities-popup .department-program-list{grid-template-columns:1fr}
+}
+@media(max-width:700px){
+  .departments-modern{padding:75px 20px 60px}
+  .department-list-modern{grid-template-columns:1fr}
+  .department-block{padding:22px}
+  .department-modal{padding:10px}
+  .department-modal-window{padding:42px 18px 28px;max-height:95vh}
+  .department-leader-card{width:100%}
+  .department-members-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .founder-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .people-card{flex-basis:100%}
+  .people-nav{width:36px;height:36px;font-size:24px}
+  .department-activities-popup .department-program-list{grid-template-columns:1fr}
+  .department-activities-popup .department-program-card{grid-template-columns:40% 60%}
+}
+
+/* =====================================================
+   FINAL DEPARTMENT CARD + PEOPLE CAROUSEL POLISH
+===================================================== */
+.department-list-modern{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:15px;
+  width:100%;
+  max-width:1180px;
+  margin:0 auto;
+}
+.department-card{height:300px;perspective:1200px;cursor:pointer;min-width:0;position:relative;z-index:1}
+.department-card-inner{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .75s cubic-bezier(.2,.7,.2,1);pointer-events:none}
+.department-card:hover .department-card-inner,.department-card:focus .department-card-inner{transform:rotateY(180deg)}
+.department-card-front,.department-card-back{position:absolute;width:100%;height:100%;overflow:hidden;border-radius:20px;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.department-card-front{display:flex;flex-direction:column;background:#fff}
+.department-card-image{height:62%;overflow:hidden}
+.department-card-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.department-card:hover .department-card-image img{transform:scale(1.06)}
+.department-card-info{flex:1;padding:13px 15px;display:flex;flex-direction:column;justify-content:center}
+.department-card-info h3{margin:0 0 7px;color:#1f3025;font-size:21px;line-height:1.1}
+.department-card-info p{margin:0;color:#707771;font-size:11px;line-height:1.55}
+.department-card-back{display:flex;flex-direction:column;justify-content:center;padding:28px;background:var(--department-color,#3f7d50);color:#fff;transform:rotateY(180deg)}
+.department-card-back h3{margin:0 0 12px;font-size:27px;line-height:1.05;color:#fff}
+.department-card-back p{margin:0;color:rgba(255,255,255,.9);font-size:12px;line-height:1.7}
+.department-card-click{display:inline-block;margin-top:20px;font-size:9px;font-weight:700;letter-spacing:1.6px;color:#fff}
+.department-card-green{--department-color:#3f7d50}.department-card-blue{--department-color:#3978a8}.department-card-orange{--department-color:#d4773f}.department-card-purple{--department-color:#795b91}.department-card-pink{--department-color:#c96b8d}
+
+/* Founders: keep eight frames */
+.founders-section{margin-top:95px}
+.founder-grid{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:12px;max-width:1180px;margin:0 auto}
+.founder-card{border:1px solid #e1e6e1;background:#fff;overflow:hidden}
+
+/* Everyone who joined: circular, smooth, continuous carousel */
+.people-section{margin-top:95px;overflow:hidden}
+.people-carousel-wrap{position:relative;max-width:1180px;margin:0 auto;display:block}
+.people-carousel{overflow:hidden;width:100%;mask-image:linear-gradient(to right,transparent 0,#000 7%,#000 93%,transparent 100%);-webkit-mask-image:linear-gradient(to right,transparent 0,#000 7%,#000 93%,transparent 100%)}
+.people-track{display:flex;width:max-content;gap:28px;animation:peopleSmooth 32s linear infinite;will-change:transform}
+.people-card{flex:0 0 145px;border:0;background:transparent;overflow:visible;text-align:center}
+.people-card .person-photo{width:125px;height:125px;aspect-ratio:1/1;margin:0 auto;border-radius:50%;overflow:hidden;background:#edf1ed;border:4px solid #fff;box-shadow:0 8px 25px rgba(31,48,37,.1)}
+.people-card .person-photo img{width:100%;height:100%;object-fit:cover;border-radius:50%}
+.people-card .person-meta{padding:11px 3px 0}
+.people-card .person-meta h4{font-size:13px;color:#1f3025;margin:0 0 4px;white-space:nowrap}
+.people-card .person-meta span{font-size:9px;color:#788178}
+.people-nav,.people-dots{display:none}
+@keyframes peopleSmooth{from{transform:translateX(0)}to{transform:translateX(calc(-50% + 14px))}}
+@media(max-width:1100px){.department-list-modern{grid-template-columns:repeat(3,minmax(0,1fr))}.founder-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media(max-width:700px){.department-list-modern{grid-template-columns:1fr}.department-card{height:330px}.founder-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.people-track{gap:20px}.people-card{flex-basis:130px}.people-card .person-photo{width:105px;height:105px}}
+</style>
+
+<style id="patch-overrides">
+/* ===== Section-to-section spacing (About -> Departments -> Activities -> Founders -> People) ===== */
+#about { padding-bottom: 20px !important; }
+.departments-modern { padding-top: 20px !important; padding-bottom: 20px !important; }
+.activities {
+  margin-top: 0 !important;
+  padding-top: 20px !important;
+  padding-bottom: 20px !important;
+}
+.activities .section-title { margin-bottom: 10px !important; }
+.founders-section { margin-top: 20px !important; padding-top: 0 !important; padding-bottom: 20px !important; }
+.people-section { margin-top: 20px !important; padding-top: 0 !important; }
+.departments-modern .modern-section-heading,
+.founders-section .modern-section-heading,
+.people-section .modern-section-heading {
+  margin-top: 0 !important;
+  margin-bottom: 10px !important;
+}
+
+/* ===== Department cards ===== */
+.department-list-modern { gap: 12px !important; }
+.department-card { height: 300px !important; }
+.department-card-front, .department-card-back { border-radius: 14px !important; }
+
+/* ===== Department popup: visibility / stacking ===== */
+.department-modal { z-index: 20000 !important; }
+.department-modal-window { z-index: 20001 !important; }
+.department-modal.active { display: flex !important; }
+.activity-overlay.show { z-index: 30000; }
+
+/* ===== Activity popup list bullet uses the bird logo ===== */
+.overlay-right ul li { padding-left: 30px !important; }
+.overlay-right ul li::before {
+  content: "" !important;
+  width: 20px !important;
+  height: 20px !important;
+  left: 0 !important;
+  top: 3px !important;
+  background: url('bird.png') center/contain no-repeat !important;
+  color: transparent !important;
+}
+
+/* ===== Founders / People carousel ===== */
+.founder-grid { gap: 10px !important; }
+.people-track {
+  gap: 20px;
+  animation: peopleSmooth 32s linear infinite !important;
+  animation-play-state: running !important;
+}
+.people-track:hover { animation-play-state: running !important; }
+
+/* ===== Department popup: scroll behavior ===== */
+.department-modal-window {
+  height: min(92vh, 900px);
+  max-height: 90vh !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #b8c4ba transparent;
+}
+.department-modal-window::-webkit-scrollbar { width: 7px; }
+.department-modal-window::-webkit-scrollbar-track { background: transparent; }
+.department-modal-window::-webkit-scrollbar-thumb { background: #b8c4ba; border-radius: 10px; }
+
+/* ===== Department popup: leader (project manager) ===== */
+.department-leaders {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px !important;
+  flex-wrap: wrap;
+}
+.department-leader-card {
+  width: 190px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  text-align: center;
+}
+.department-leader-card .person-photo {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #edf1ed;
+  border: 5px solid #fff;
+  box-shadow: 0 8px 25px rgba(31,48,37,.12);
+}
+.department-leader-card .person-meta { padding: 8px 2px 0 !important; }
+.department-leader-card .person-meta > span {
+  display: block;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #65806b;
+  margin-bottom: 5px;
+}
+.department-leader-card .person-meta h4 {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.25;
+  color: #1f3025;
+}
+.department-leader-card .person-meta p { display: none; }
+
+/* ===== Department popup: members ===== */
+.department-members-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: 12px 12px !important;
+  align-items: start;
+}
+.department-members-grid .member-card {
+  border: 0;
+  background: transparent;
+  overflow: visible;
+  text-align: center;
+}
+.department-members-grid .member-card .person-photo {
+  width: 128px;
+  height: 128px;
+  margin: 0 auto;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #edf1ed;
+  border: 4px solid #fff;
+  box-shadow: 0 8px 22px rgba(31,48,37,.10);
+}
+.department-members-grid .member-card .person-meta { padding: 12px 3px 0; }
+.department-members-grid .member-card .person-meta h4 {
+  margin: 0 0 4px;
+  font-size: 14px;
+  line-height: 1.25;
+  color: #1f3025;
+}
+.department-members-grid .member-card .person-meta span {
+  font-size: 9px;
+  line-height: 1.4;
+  color: #788178;
+}
+
+/* ===== Department popup: PM -> members gap, section -> section gap ===== */
+/* These are <section> tags, so they were silently inheriting the global
+   `section { padding: 100px 10%; }` reset — that 100px padding, not the
+   margins below, was the real cause of the huge gaps. Zero it out here. */
+.department-modal-header { margin-bottom: 8px !important; }
+.department-modal-section {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 4px !important;
+}
+.department-leader-section { margin-top: 0 !important; margin-bottom: 4px !important; }
+.department-modal-section-title { margin-bottom: 6px !important; }
+.department-activities-popup {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-top: 10px !important;
+}
+
+@media (max-width: 1000px) {
+  .department-members-grid { grid-template-columns: repeat(4, minmax(0,1fr)); }
+}
+@media (max-width: 700px) {
+  #about { padding-bottom: 18px !important; }
+  .departments-modern { padding-top: 22px !important; }
+  .activities { padding-top: 22px !important; }
+  .founders-section { margin-top: 18px !important; }
+  .people-section { margin-top: 20px !important; }
+  .department-leader-section { margin-bottom: 6px !important; }
+  .department-modal-section { margin-top: 8px !important; }
+  .department-modal-window { height: 95vh; max-height: 95vh; padding: 42px 18px 30px; }
+  .department-members-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 26px 16px; }
+  .department-leader-card { width: 170px; }
+  .department-leader-card .person-photo { width: 130px; height: 130px; }
+  .department-members-grid .member-card .person-photo { width: 112px; height: 112px; }
+}
+</style>
+
 </head>
 <body>
   <!-- NAVBAR -->
@@ -1556,6 +2005,7 @@
     <ul>
       <li><a href="#">Home</a></li>
       <li><a href="#about">About</a></li>
+      <li><a href="#departments">Departments</a></li>
       <li><a href="#activities">Activities</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -1628,7 +2078,56 @@
     </div>
   </section>
 
-  <!-- ACTIVITIES -->
+  <!-- =====================================================
+     DEPARTMENT SECTION
+===================================================== -->
+<section id="departments" class="departments-modern">
+  <div class="modern-section-heading">
+    <span>OUR DEPARTMENTS</span>
+    <h2>The People Behind<br><em>Every Action.</em></h2>
+    <p>Five teams, one mission. Meet the people who keep Akar Nusa moving.</p>
+  </div>
+  <div id="departmentList" class="department-list-modern"></div>
+
+</section>
+
+<!-- DEPARTMENT POPUP -->
+<div class="department-modal" id="departmentModal" aria-hidden="true">
+  <div class="department-modal-backdrop" id="departmentModalBackdrop"></div>
+  <div class="department-modal-window" role="dialog" aria-modal="true" aria-labelledby="departmentModalName">
+    <button class="department-modal-close" id="departmentModalClose" aria-label="Close department">×</button>
+
+    <header class="department-modal-header">
+      <span class="eyebrow" id="departmentModalCategory">DEPARTMENT</span>
+      <h2 id="departmentModalName">Department</h2>
+      <p id="departmentModalDescription">Department description.</p>
+    </header>
+
+    <section class="department-modal-section department-leader-section">
+      <div class="department-leaders" id="departmentLeaderList"></div>
+    </section>
+
+    <section class="department-modal-section">
+      <div class="department-modal-section-title">
+        <h3>Our Team</h3>
+        <span>THE PEOPLE BEHIND THE WORK</span>
+      </div>
+      <div class="department-members-grid" id="departmentMemberList"></div>
+    </section>
+
+
+
+    <section class="department-activities-popup">
+      <div class="department-modal-section-title">
+        <h3 id="departmentProgramsHeading">Our Activities</h3>
+        <span>PROGRAMS CONNECTED TO THIS DEPARTMENT</span>
+      </div>
+      <div class="department-program-list" id="departmentProgramList"></div>
+    </section>
+  </div>
+</div>
+
+<!-- ACTIVITIES -->
   <section id="activities" class="activities">
     <div class="section-title">
       <h2>Our Activities</h2>
@@ -1708,6 +2207,8 @@
       <p id="activity-desc">Environmental education for young people.</p>
     </div>
 
+    <div class="activity-dots" id="activityDots" aria-label="Activity carousel navigation"></div>
+
     <!-- OVERLAY DETAIL -->
     <div id="activityOverlay" class="activity-overlay">
       <div class="activity-window">
@@ -1738,608 +2239,34 @@
       </div>
     </div>
   </section>
-<!-- =====================================================
-     DEPARTMENT SECTION
-===================================================== -->
-
-<section id="departments" class="department-section">
-
-    <div class="department-heading">
-        <span>OUR DEPARTMENTS</span>
-
-        <h2>
-            The People Behind
-            <br>
-            <em>Every Action.</em>
-        </h2>
-
-        <p>
-            Meet the departments behind every idea, project,
-            and meaningful action we create together.
-        </p>
+  <section class="founders-section">
+    <div class="modern-section-heading compact">
+      <span>THE FOUNDERS</span>
+      <h2>The Roots of <em>Akar Nusa.</em></h2>
+      <p>Eight founder frames for the people who started Akar Nusa.</p>
     </div>
-
-
-    <!-- =================================================
-         6 DEPARTMENT CARDS
-    ================================================== -->
-
-    <div class="department-card-grid">
-
-        <!-- 01 — ENVIRONMENT -->
-        <div
-            class="department-card department-card-green"
-            onclick="openDepartmentModal(0)"
-        >
-
-            <div class="department-card-inner">
-
-                <!-- FRONT -->
-                <div class="department-card-front">
-
-                    <div class="department-card-image">
-                        <img
-                            src="images/environment.jpg"
-                            alt="Environment Department"
-                        >
-                    </div>
-
-                    <div class="department-card-info">
-
-                        <span class="department-card-number">
-                            01
-                        </span>
-
-                        <h3>
-                            Environment
-                        </h3>
-
-                        <p>
-                            Creating action for a greener future.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <!-- BACK -->
-                <div class="department-card-back">
-
-                    <span class="department-card-number">
-                        01
-                    </span>
-
-                    <h3>
-                        Environment
-                    </h3>
-
-                    <p>
-                        Focused on environmental education,
-                        sustainability, and direct action.
-                    </p>
-
-                    <span class="department-card-click">
-                        EXPLORE DEPARTMENT →
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- 02 — EDUCATION -->
-        <div
-            class="department-card department-card-blue"
-            onclick="openDepartmentModal(1)"
-        >
-
-            <div class="department-card-inner">
-
-                <div class="department-card-front">
-
-                    <div class="department-card-image">
-                        <img
-                            src="images/education.jpg"
-                            alt="Education Department"
-                        >
-                    </div>
-
-                    <div class="department-card-info">
-
-                        <span class="department-card-number">
-                            02
-                        </span>
-
-                        <h3>
-                            Education
-                        </h3>
-
-                        <p>
-                            Growing through meaningful learning.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="department-card-back">
-
-                    <span class="department-card-number">
-                        02
-                    </span>
-
-                    <h3>
-                        Education
-                    </h3>
-
-                    <p>
-                        Building learning experiences that
-                        empower young people.
-                    </p>
-
-                    <span class="department-card-click">
-                        EXPLORE DEPARTMENT →
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- 03 — SOCIAL ACTION -->
-        <div
-            class="department-card department-card-orange"
-            onclick="openDepartmentModal(2)"
-        >
-
-            <div class="department-card-inner">
-
-                <div class="department-card-front">
-
-                    <div class="department-card-image">
-                        <img
-                            src="images/social-action.jpg"
-                            alt="Social Action Department"
-                        >
-                    </div>
-
-                    <div class="department-card-info">
-
-                        <span class="department-card-number">
-                            03
-                        </span>
-
-                        <h3>
-                            Social Action
-                        </h3>
-
-                        <p>
-                            Turning empathy into real action.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="department-card-back">
-
-                    <span class="department-card-number">
-                        03
-                    </span>
-
-                    <h3>
-                        Social Action
-                    </h3>
-
-                    <p>
-                        Connecting people through meaningful
-                        community-based initiatives.
-                    </p>
-
-                    <span class="department-card-click">
-                        EXPLORE DEPARTMENT →
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- 04 — CREATIVE -->
-        <div
-            class="department-card department-card-purple"
-            onclick="openDepartmentModal(3)"
-        >
-
-            <div class="department-card-inner">
-
-                <div class="department-card-front">
-
-                    <div class="department-card-image">
-                        <img
-                            src="images/creative.jpg"
-                            alt="Creative Department"
-                        >
-                    </div>
-
-                    <div class="department-card-info">
-
-                        <span class="department-card-number">
-                            04
-                        </span>
-
-                        <h3>
-                            Creative
-                        </h3>
-
-                        <p>
-                            Turning ideas into visual stories.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="department-card-back">
-
-                    <span class="department-card-number">
-                        04
-                    </span>
-
-                    <h3>
-                        Creative
-                    </h3>
-
-                    <p>
-                        Developing visual concepts, design,
-                        media, and creative experiences.
-                    </p>
-
-                    <span class="department-card-click">
-                        EXPLORE DEPARTMENT →
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- 05 — CAMPAIGN -->
-        <div
-            class="department-card department-card-pink"
-            onclick="openDepartmentModal(4)"
-        >
-
-            <div class="department-card-inner">
-
-                <div class="department-card-front">
-
-                    <div class="department-card-image">
-                        <img
-                            src="images/campaign.jpg"
-                            alt="Campaign Department"
-                        >
-                    </div>
-
-                    <div class="department-card-info">
-
-                        <span class="department-card-number">
-                            05
-                        </span>
-
-                        <h3>
-                            Campaign
-                        </h3>
-
-                        <p>
-                            Spreading ideas that inspire change.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="department-card-back">
-
-                    <span class="department-card-number">
-                        05
-                    </span>
-
-                    <h3>
-                        Campaign
-                    </h3>
-
-                    <p>
-                        Creating campaigns and communication
-                        strategies to reach wider communities.
-                    </p>
-
-                    <span class="department-card-click">
-                        EXPLORE DEPARTMENT →
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- 06 — CULTURE / EARTHY -->
-        <div
-            class="department-card department-card-earth"
-            onclick="openDepartmentModal(5)"
-        >
-
-            <div class="department-card-inner">
-
-                <div class="department-card-front">
-
-                    <div class="department-card-image">
-                        <img
-                            src="images/culture.jpg"
-                            alt="Culture Department"
-                        >
-                    </div>
-
-                    <div class="department-card-info">
-
-                        <span class="department-card-number">
-                            06
-                        </span>
-
-                        <h3>
-                            Culture
-                        </h3>
-
-                        <p>
-                            Preserving stories, values, and identity.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="department-card-back">
-
-                    <span class="department-card-number">
-                        06
-                    </span>
-
-                    <h3>
-                        Culture
-                    </h3>
-
-                    <p>
-                        Connecting young people with local culture,
-                        stories, and heritage.
-                    </p>
-
-                    <span class="department-card-click">
-                        EXPLORE DEPARTMENT →
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-
-<!-- =====================================================
-     DEPARTMENT PROFILE MODAL
-===================================================== -->
-
-<div
-    class="department-profile-modal"
-    id="departmentProfileModal"
->
-
-    <!-- BACKDROP -->
-    <div
-        class="department-profile-overlay"
-        onclick="closeDepartmentModal()"
-    ></div>
-
-
-    <!-- MODAL -->
-    <div class="department-profile-window">
-
-        <button
-            class="department-profile-close"
-            onclick="closeDepartmentModal()"
-        >
-            ×
-        </button>
-
-
-        <!-- =================================================
-             HEADER
-        ================================================== -->
-
-        <header class="department-profile-header">
-
-            <span id="departmentProfileCategory">
-                DEPARTMENT
-            </span>
-
-            <h2 id="departmentProfileName">
-                Environment
-            </h2>
-
-            <p id="departmentProfileDescription">
-                Department description.
-            </p>
-
-        </header>
-
-
-
-        <!-- =================================================
-             PROJECT MANAGER
-        ================================================== -->
-
-        <section class="department-profile-manager">
-
-            <div class="department-profile-section-heading">
-
-                <span>01</span>
-
-                <h3>
-                    Project Manager
-                </h3>
-
-            </div>
-
-
-            <div class="department-manager-card">
-
-                <div class="department-manager-image">
-
-                    <img
-                        id="departmentManagerImage"
-                        src=""
-                        alt=""
-                    >
-
-                </div>
-
-
-                <div class="department-manager-content">
-
-                    <span id="departmentManagerRole">
-                        PROJECT MANAGER
-                    </span>
-
-                    <h4 id="departmentManagerName">
-                        Name
-                    </h4>
-
-                    <p id="departmentManagerDescription">
-                        Description.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-
-        <!-- =================================================
-             TEAM MEMBERS
-        ================================================== -->
-
-        <section class="department-profile-team">
-
-            <div class="department-profile-section-heading">
-
-                <span>02</span>
-
-                <h3>
-                    Our Team
-                </h3>
-
-            </div>
-
-
-            <div
-                class="department-member-list"
-                id="departmentMemberList"
-            >
-                <!-- GENERATED BY JAVASCRIPT -->
-            </div>
-
-        </section>
-
-
-
-        <!-- =================================================
-             ABOUT DEPARTMENT
-        ================================================== -->
-
-        <section class="department-profile-about">
-
-            <div class="department-profile-section-heading">
-
-                <span>03</span>
-
-                <h3>
-                    About The Department
-                </h3>
-
-            </div>
-
-
-            <p id="departmentAboutText">
-                Department description.
-            </p>
-
-        </section>
-
-
-
-        <!-- =================================================
-             PROGRAMS
-        ================================================== -->
-
-        <section class="department-profile-programs">
-
-            <div class="department-profile-section-heading">
-
-                <span>04</span>
-
-                <h3>
-                    Our Programs
-                </h3>
-
-            </div>
-
-
-            <!-- 2 COLUMNS -->
-            <div
-                class="department-program-list"
-                id="departmentProgramList"
-            >
-                <!-- GENERATED BY JAVASCRIPT -->
-            </div>
-
-        </section>
-
-    </div>
-
-</div>
-  <!-- CONTACT -->
-  <section id="contact" class="contact">
-    <h2>Contact</h2>
-    <p>📧 email@example.com</p>
-    <p>📱 +62 812 3456 7890</p>
-    <p>📍 Indonesia</p>
+    <div id="founderGrid" class="founder-grid"></div>
   </section>
 
-  <footer>© 2026 My Website</footer>
+  <section class="people-section">
+    <div class="modern-section-heading compact">
+      <span>EVERYONE WHO JOINED</span>
+      <h2>Akar Nusa <em>People.</em></h2>
+      <p>A smooth carousel for everyone who has ever been part of the journey.</p>
+    </div>
+    <div class="people-carousel-wrap">
+      <button class="people-nav prev" id="peoplePrev" aria-label="Previous people">‹</button>
+      <div class="people-carousel" id="peopleCarousel"><div class="people-track" id="peopleTrack"></div></div>
+      <button class="people-nav next" id="peopleNext" aria-label="Next people">›</button>
+    </div>
+    <div class="people-dots" id="peopleDots"></div>
+  </section>
 
-  <script>
+
+<!-- CONTACT -->
+<section id="contact" class="contact contact-modern"><div class="contact-inner"><div class="social-links"><a href="#" aria-label="YouTube" class="social-icon"><img src="https://cdn.simpleicons.org/youtube/ffffff" alt="YouTube"></a><a href="https://www.instagram.com/akarnusa_id?utm_source=ig_web_button_share_sheet&igsi=ZDNlZDc0MzIxNw==" aria-label="Instagram" class="social-icon"><img src="https://cdn.simpleicons.org/instagram/ffffff" alt="Instagram"></a><a href="#" aria-label="TikTok" class="social-icon"><img src="https://cdn.simpleicons.org/tiktok/ffffff" alt="TikTok"></a><a href="#" aria-label="LinkedIn" class="social-icon"><img src="https://cdn.simpleicons.org/linkedin/ffffff" alt="LinkedIn"></a><a href="#" aria-label="WhatsApp" class="social-icon"><img src="https://cdn.simpleicons.org/whatsapp/ffffff" alt="WhatsApp"></a></div></div></section>
+<footer>© 2026 Akar Nusa</footer>
+<script>
     (function() {
       "use strict";
 
@@ -2457,7 +2384,11 @@ coverflowInterval = setInterval(nextCard, 3000);
         });
       }
 
+      let activityOpenedFromDepartment = false;
+
       function openOverlay(card) {
+        const departmentModal = document.getElementById("departmentModal");
+        activityOpenedFromDepartment = !!departmentModal?.classList.contains("active");
         overlay.classList.add("show");
         overlayTitle.textContent = card.dataset.title;
         overlayDesc.textContent = card.dataset.long;
@@ -2480,6 +2411,12 @@ coverflowInterval = setInterval(nextCard, 3000);
       function closeActivityOverlay() {
         overlay.classList.remove("show");
         clearInterval(galleryTimer);
+        // If the activity popup was opened from a department popup,
+        // keep the department popup open underneath it.
+        if (!activityOpenedFromDepartment) {
+          document.body.style.overflow = "";
+        }
+        activityOpenedFromDepartment = false;
       }
 
       closeBtn.addEventListener("click", closeActivityOverlay);
@@ -2556,729 +2493,257 @@ coverflowInterval = setInterval(nextCard, 3000);
 });
 });
 /* =====================================================
-   DEPARTMENT DATA
+   DEPARTMENTS / FOUNDERS / PEOPLE
 ===================================================== */
-
-const departmentData = [
-
-    /* =================================================
-       01 — ENVIRONMENT
-    ================================================== */
-
-    {
-        name: "Environment",
-
-        category: "ENVIRONMENT DEPARTMENT",
-
-        description:
-            "Creating meaningful environmental action through education, sustainability, and direct community involvement.",
-
-
-        /* PROJECT MANAGER */
-
-        manager: {
-
-            name: "Fahreza",
-
-            role: "PROJECT MANAGER",
-
-            image: "images/fahreza.jpg",
-
-            description:
-                "Leads the department and coordinates people, ideas, and programs to make every environmental initiative meaningful."
-
-        },
-
-
-        /* MEMBERS */
-
-        members: [
-
-            {
-                name: "Member One",
-                role: "Program Staff",
-                image: "images/member1.jpg"
-            },
-
-            {
-                name: "Member Two",
-                role: "Creative Staff",
-                image: "images/member2.jpg"
-            },
-
-            {
-                name: "Member Three",
-                role: "Media Staff",
-                image: "images/member3.jpg"
-            },
-
-            {
-                name: "Member Four",
-                role: "Field Staff",
-                image: "images/member4.jpg"
-            }
-
-        ],
-
-
-        /* ABOUT */
-
-        about:
-            "The Environment Department focuses on creating environmental awareness and turning that awareness into concrete action. Through educational programs, community initiatives, and collaborative projects, the department works to encourage young people to become active contributors to a more sustainable future.",
-
-
-        /* PROGRAMS */
-
-        programs: [
-
-            {
-                name: "GreenLeap",
-
-                image: "IMG_8234.jpg",
-
-                description:
-                    "Environmental education for young people through workshops, campaigns, and direct environmental action.",
-
-                link:
-                    "projects.html#greenleap"
-            },
-
-            {
-                name: "Akar NuCycle",
-
-                image: "activity2.jpg",
-
-                description:
-                    "A waste management initiative focusing on waste sorting, recycling, composting, and public education.",
-
-                link:
-                    "projects.html#akar-nucycle"
-            },
-
-            {
-                name: "Akar NuAction",
-
-                image: "nuaction.jpeg",
-
-                description:
-                    "Community environmental action involving volunteers in direct environmental projects.",
-
-                link:
-                    "projects.html#akar-nuaction"
-            },
-
-            {
-                name: "Tree Planting",
-
-                image: "01.jpg",
-
-                description:
-                    "A collaborative environmental action focused on restoring green spaces and building awareness.",
-
-                link:
-                    "projects.html#tree-planting"
-            }
-
-        ]
-
-    },
-
-
-    /* =================================================
-       02 — EDUCATION
-    ================================================== */
-
-    {
-        name: "Education",
-
-        category: "EDUCATION DEPARTMENT",
-
-        description:
-            "Building meaningful learning experiences and empowering young people through education.",
-
-        manager: {
-
-            name: "Education Manager",
-
-            role: "PROJECT MANAGER",
-
-            image: "images/member2.jpg",
-
-            description:
-                "Coordinates educational programs and develops learning experiences that are engaging and meaningful."
-
-        },
-
-        members: [
-
-            {
-                name: "Member One",
-                role: "Education Staff",
-                image: "images/member2.jpg"
-            },
-
-            {
-                name: "Member Two",
-                role: "Program Staff",
-                image: "images/member3.jpg"
-            }
-
-        ],
-
-        about:
-            "The Education Department develops programs that create accessible, engaging, and meaningful learning experiences for young people and communities.",
-
-        programs: [
-
-            {
-                name: "Education Project",
-                image: "images/member2.jpg",
-                description:
-                    "An educational initiative designed to create meaningful learning experiences.",
-                link:
-                    "projects.html#education-project"
-            },
-
-            {
-                name: "Learning Camp",
-                image: "images/member3.jpg",
-                description:
-                    "A collaborative learning experience combining education and community.",
-                link:
-                    "projects.html#learning-camp"
-            }
-
-        ]
-
-    },
-
-
-    /* =================================================
-       03 — SOCIAL ACTION
-    ================================================== */
-
-    {
-        name: "Social Action",
-
-        category: "SOCIAL ACTION DEPARTMENT",
-
-        description:
-            "Turning empathy into meaningful action through community-based initiatives.",
-
-        manager: {
-
-            name: "Social Action Manager",
-
-            role: "PROJECT MANAGER",
-
-            image: "images/member3.jpg",
-
-            description:
-                "Coordinates social initiatives and builds meaningful connections with communities."
-
-        },
-
-        members: [
-
-            {
-                name: "Member One",
-                role: "Social Staff",
-                image: "images/member3.jpg"
-            },
-
-            {
-                name: "Member Two",
-                role: "Field Staff",
-                image: "images/member4.jpg"
-            }
-
-        ],
-
-        about:
-            "The Social Action Department works directly with communities to create initiatives that respond to real needs and encourage collective action.",
-
-        programs: [
-
-            {
-                name: "Social Action",
-
-                image: "images/member3.jpg",
-
-                description:
-                    "A community-based initiative that brings people together through meaningful action.",
-
-                link:
-                    "projects.html#social-action"
-            }
-
-        ]
-
-    },
-
-
-    /* =================================================
-       04 — CREATIVE
-    ================================================== */
-
-    {
-        name: "Creative",
-
-        category: "CREATIVE DEPARTMENT",
-
-        description:
-            "Turning ideas into visual stories, experiences, and creative communication.",
-
-        manager: {
-
-            name: "Creative Manager",
-
-            role: "PROJECT MANAGER",
-
-            image: "images/member4.jpg",
-
-            description:
-                "Leads creative direction and develops visual concepts for different programs and initiatives."
-
-        },
-
-        members: [
-
-            {
-                name: "Member One",
-                role: "Graphic Designer",
-                image: "images/member4.jpg"
-            },
-
-            {
-                name: "Member Two",
-                role: "Photographer",
-                image: "images/member5.jpg"
-            },
-
-            {
-                name: "Member Three",
-                role: "Videographer",
-                image: "images/member6.jpg"
-            }
-
-        ],
-
-        about:
-            "The Creative Department transforms ideas into visual identities, designs, documentation, campaigns, and creative experiences.",
-
-        programs: [
-
-            {
-                name: "Akar Nusa Tales",
-
-                image: "activity4.jpg",
-
-                description:
-                    "Creative storytelling through media, educational content, and meaningful conversations.",
-
-                link:
-                    "projects.html#akar-nusa-tales"
-            },
-
-            {
-                name: "Creative Campaign",
-
-                image: "activity5.jpg",
-
-                description:
-                    "Creative communication designed to deliver meaningful messages to wider audiences.",
-
-                link:
-                    "projects.html#creative-campaign"
-            }
-
-        ]
-
-    },
-
-
-    /* =================================================
-       05 — CAMPAIGN
-    ================================================== */
-
-    {
-        name: "Campaign",
-
-        category: "CAMPAIGN DEPARTMENT",
-
-        description:
-            "Spreading ideas and creating communication strategies that inspire change.",
-
-        manager: {
-
-            name: "Campaign Manager",
-
-            role: "PROJECT MANAGER",
-
-            image: "images/member5.jpg",
-
-            description:
-                "Coordinates campaign strategy, communication, and outreach for different programs."
-
-        },
-
-        members: [
-
-            {
-                name: "Member One",
-                role: "Campaign Staff",
-                image: "images/member5.jpg"
-            },
-
-            {
-                name: "Member Two",
-                role: "Media Staff",
-                image: "images/member6.jpg"
-            }
-
-        ],
-
-        about:
-            "The Campaign Department develops communication strategies and campaigns that help programs reach wider audiences and create greater awareness.",
-
-        programs: [
-
-            {
-                name: "Campaign One",
-
-                image: "images/member5.jpg",
-
-                description:
-                    "A campaign designed to increase awareness and encourage meaningful participation.",
-
-                link:
-                    "projects.html#campaign-one"
-            },
-
-            {
-                name: "Media Campaign",
-
-                image: "images/member6.jpg",
-
-                description:
-                    "Creative media content supporting campaign communication and outreach.",
-
-                link:
-                    "projects.html#media-campaign"
-            }
-
-        ]
-
-    },
-
-
-    /* =================================================
-       06 — CULTURE
-    ================================================== */
-
-    {
-        name: "Culture",
-
-        category: "CULTURE DEPARTMENT",
-
-        description:
-            "Preserving stories, values, and identity while connecting culture with young people.",
-
-        manager: {
-
-            name: "Culture Manager",
-
-            role: "PROJECT MANAGER",
-
-            image: "images/member6.jpg",
-
-            description:
-                "Develops programs that connect young people with culture, stories, and local heritage."
-
-        },
-
-        members: [
-
-            {
-                name: "Member One",
-                role: "Culture Staff",
-                image: "images/member6.jpg"
-            },
-
-            {
-                name: "Member Two",
-                role: "Program Staff",
-                image: "images/member1.jpg"
-            }
-
-        ],
-
-        about:
-            "The Culture Department explores local stories, heritage, and values while presenting them in ways that are relevant and engaging for young people.",
-
-        programs: [
-
-            {
-                name: "Culture Project",
-
-                image: "images/member6.jpg",
-
-                description:
-                    "A creative program introducing cultural stories and heritage through meaningful experiences.",
-
-                link:
-                    "projects.html#culture-project"
-            }
-
-        ]
-
-    }
-
+const departmentData=[
+  {
+    name:"Main & Support",
+    cardImage:"foto.jpg", color:"department-card-pink",
+    category:"MAIN + SUPPORT",
+    description:"The core team handling strategy, partnerships, operations, coordination, website, digital tools, and technical support across Akar Nusa.",
+    activitiesKey:null,
+    leaders:[
+      {name:"Main Department Leader",role:"MAIN LEADER",image:"images/member5.jpg",description:"Coordinates overall direction, partnerships, internal operations, website, and technical support across Akar Nusa."}
+    ],
+    members:[
+      {name:"Operations Staff",role:"Operations",image:"images/member5.jpg"},
+      {name:"Partnerships Staff",role:"Partnerships",image:"images/member6.jpg"},
+      {name:"Web Developer",role:"Technical Support",image:"images/member1.jpg"},
+      {name:"IT Support",role:"Technical Support",image:"images/member2.jpg"}
+    ],
+    about:"Main & Support brings strategy, partnerships, operations, coordination, website, digital tools, and technical support together so every other department can work smoothly."
+  },
+  {
+    name:"GreenLeap",
+    cardImage:"IMG_8234.jpg", color:"department-card-green",
+    category:"GREENLEAP",
+    description:"Environmental education for young people through workshops, campaigns, school visits, and partnerships.",
+    activitiesKey:"greenleap",
+    leaders:[
+      {name:"Fahreza",role:"PROJECT MANAGER",image:"images/fahreza.jpg",description:"Leads the GreenLeap team and coordinates the people, ideas, and programs behind every environmental initiative."}
+    ],
+    members:[
+      {name:"Member One",role:"Program Staff",image:"images/member1.jpg"},
+      {name:"Member Two",role:"Field Staff",image:"images/member2.jpg"},
+      {name:"Member Three",role:"Media Staff",image:"images/member3.jpg"}
+    ],
+    about:"GreenLeap focuses on creating environmental awareness and turning that awareness into concrete action through educational workshops, school visits, campaigns, and community initiatives."
+  },
+  {
+    name:"Akar NuCycle",
+    cardImage:"activity2.jpg", color:"department-card-blue",
+    category:"AKAR NUCYCLE",
+    description:"A waste-management initiative teaching communities how to sort, recycle, compost, and build sustainable habits.",
+    activitiesKey:"nucycle",
+    leaders:[
+      {name:"NuCycle Leader 01",role:"PROJECT LEADER",image:"images/member2.jpg",description:"Coordinates the waste-management program and community activities."},
+      {name:"NuCycle Leader 02",role:"PROJECT LEADER",image:"images/member3.jpg",description:"Supports planning, field implementation, and community education."}
+    ],
+    members:[
+      {name:"Member One",role:"Program Staff",image:"images/member2.jpg"},
+      {name:"Member Two",role:"Field Staff",image:"images/member3.jpg"},
+      {name:"Member Three",role:"Education Staff",image:"images/member4.jpg"}
+    ],
+    about:"Akar NuCycle teaches communities about waste sorting, recycling, composting, and sustainable waste management so people can build habits that last."
+  },
+  {
+    name:"Akar NuAction",
+    cardImage:"nuaction.jpeg", color:"department-card-orange",
+    category:"AKAR NUACTION",
+    description:"Community environmental action powered by volunteers who restore real ecosystems through hands-on work.",
+    activitiesKey:"nuaction",
+    leaders:[
+      {name:"NuAction Leader",role:"PROJECT LEADER",image:"images/member3.jpg",description:"Coordinates volunteer-led environmental projects, from tree planting to river cleanups."}
+    ],
+    members:[
+      {name:"Member One",role:"Field Staff",image:"images/member3.jpg"},
+      {name:"Member Two",role:"Volunteer Coordinator",image:"images/member4.jpg"}
+    ],
+    about:"Akar NuAction invites volunteers to directly participate in restoring ecosystems through tree planting, river cleanups, and community service days."
+  },
+  {
+    name:"Akar NusaTales",
+    cardImage:"activity4.jpg", color:"department-card-purple",
+    category:"AKAR NUSATALES",
+    description:"Creative storytelling that spreads sustainability through media, stories, and educational content.",
+    activitiesKey:"nusatales",
+    leaders:[
+      {name:"NusaTales Leader",role:"PROJECT LEADER",image:"images/member4.jpg",description:"Leads creative direction and develops storytelling content that makes sustainability engaging."}
+    ],
+    members:[
+      {name:"Member One",role:"Graphic Designer",image:"images/member5.jpg"},
+      {name:"Member Two",role:"Content Writer",image:"images/member6.jpg"}
+    ],
+    about:"Akar NusaTales inspires environmental awareness through storytelling, creative media, and educational content, turning big ideas into stories that are easy to relate to."
+  }
 ];
 
+function personCard(p,c){return `<article class="${c}"><div class="person-photo"><img src="${p.image}" alt="${p.name}" loading="lazy"></div><div class="person-meta"><h4>${p.name}</h4><span>${p.role}</span></div></article>`;}
+
+function renderDepartments(){
+  const list=document.getElementById("departmentList");
+  list.innerHTML=departmentData.map((d,i)=>`
+    <article class="department-card ${d.color || ''}" role="button" tabindex="0" aria-label="Open ${d.name}" data-department-index="${i}">
+      <div class="department-card-inner">
+        <div class="department-card-front">
+          <div class="department-card-image">
+            <img src="${d.cardImage || d.members?.[0]?.image || 'foto.jpg'}" alt="${d.name}" loading="lazy">
+          </div>
+          <div class="department-card-info">
+            <h3>${d.name}</h3>
+            <p>${d.description}</p>
+          </div>
+        </div>
+        <div class="department-card-back">
+          <h3>${d.name}</h3>
+          <p>${d.description}</p>
+          <span class="department-card-click">EXPLORE DEPARTMENT →</span>
+        </div>
+      </div>
+    </article>
+  `).join("");
+  list.querySelectorAll(".department-card").forEach(card=>{
+    const index=Number(card.dataset.departmentIndex);
+    card.addEventListener("click",()=>openDepartmentModal(index));
+    card.addEventListener("keydown",e=>{
+      if(e.key==="Enter"||e.key===" "){e.preventDefault();openDepartmentModal(index);}
+    });
+  });
+}
+
+/* Convert the original activity cards from the coverflow into reusable popup cards. */
+function getActivityCardData(title){
+  const original=[...document.querySelectorAll(".coverflow .card")].find(c=>c.dataset.title===title);
+  return original || null;
+}
+
+function makeDepartmentActivityCard(originalCard){
+  const wrapper=document.createElement("article");
+  wrapper.className="department-program-card";
+  wrapper.innerHTML=`
+    <div class="department-program-image">
+      <img src="${originalCard.querySelector("img")?.src || originalCard.dataset.images.split(",")[0]}" alt="${originalCard.dataset.title}" loading="lazy">
+    </div>
+    <div class="department-program-info">
+      <h4>${originalCard.dataset.title}</h4>
+      <p>${originalCard.dataset.short}</p>
+      <span>VIEW ACTIVITY →</span>
+    </div>`;
+  wrapper.addEventListener("click",()=>openOverlay(originalCard));
+  return wrapper;
+}
+
+function openDepartmentModal(index){
+  const d=departmentData[index];
+  if(!d)return;
+  document.getElementById("departmentModalCategory").textContent=d.category;
+  document.getElementById("departmentModalName").textContent=d.name;
+  document.getElementById("departmentModalDescription").textContent=d.description;
+
+  const leaders=document.getElementById("departmentLeaderList");
+  leaders.innerHTML=d.leaders.map(l=>`<article class="department-leader-card"><div class="person-photo"><img src="${l.image}" alt="${l.name}" loading="lazy"></div><div class="person-meta"><span>${l.role}</span><h4>${l.name}</h4><p>${l.description}</p></div></article>`).join("");
+
+  const members=document.getElementById("departmentMemberList");
+  members.innerHTML=d.members.map(m=>personCard(m,"member-card")).join("");
+
+  const programList=document.getElementById("departmentProgramList");
+  const heading=document.getElementById("departmentProgramsHeading");
+  programList.innerHTML="";
+  heading.textContent="What We Do";
+
+  const activityTitles={
+    "GreenLeap":["GreenLeap","Tree Planting"],
+    "Akar NuCycle":["Akar NuCycle"],
+    "Akar NuAction":["Akar NuAction","Tree Planting"],
+    "Akar NusaTales":["Akar Nusa Tales"],
+    "Main & Support":[]
+  };
+  const titles=activityTitles[d.name]||[];
+  const originalCards=titles.map(getActivityCardData).filter(Boolean);
+  if(originalCards.length){
+    originalCards.forEach(card=>programList.appendChild(makeDepartmentActivityCard(card)));
+  }else{
+    programList.innerHTML='<p class="department-empty">Main & Support works across the organization in strategy, operations, coordination, partnerships, website, and technical support.</p>';
+  }
+
+  const modal=document.getElementById("departmentModal");
+  modal.classList.add("active");
+  modal.setAttribute("aria-hidden","false");
+  document.body.style.overflow="hidden";
+}
+
+window.openDepartmentModal = openDepartmentModal;
+
+function closeDepartmentModal(){
+  const modal=document.getElementById("departmentModal");
+  modal.classList.remove("active");
+  modal.setAttribute("aria-hidden","true");
+  document.body.style.overflow="";
+}
 
+window.closeDepartmentModal = closeDepartmentModal;
 
-/* =====================================================
-   OPEN DEPARTMENT MODAL
-===================================================== */
-
-function openDepartmentModal(departmentIndex) {
-
-    const selectedDepartment =
-        departmentData[departmentIndex];
-
-
-    if (!selectedDepartment) return;
-
-
-
-    /* =================================================
-       HEADER
-    ================================================== */
-
-    document
-        .getElementById("departmentProfileCategory")
-        .textContent =
-            selectedDepartment.category;
-
-
-    document
-        .getElementById("departmentProfileName")
-        .textContent =
-            selectedDepartment.name;
-
-
-    document
-        .getElementById("departmentProfileDescription")
-        .textContent =
-            selectedDepartment.description;
-
-
-
-    /* =================================================
-       PROJECT MANAGER
-    ================================================== */
-
-    document
-        .getElementById("departmentManagerImage")
-        .src =
-            selectedDepartment.manager.image;
-
-
-    document
-        .getElementById("departmentManagerImage")
-        .alt =
-            selectedDepartment.manager.name;
-
-
-    document
-        .getElementById("departmentManagerName")
-        .textContent =
-            selectedDepartment.manager.name;
-
-
-    document
-        .getElementById("departmentManagerRole")
-        .textContent =
-            selectedDepartment.manager.role;
-
-
-    document
-        .getElementById("departmentManagerDescription")
-        .textContent =
-            selectedDepartment.manager.description;
-
-
-
-    /* =================================================
-       ABOUT
-    ================================================== */
-
-    document
-        .getElementById("departmentAboutText")
-        .textContent =
-            selectedDepartment.about;
-
-
-
-    /* =================================================
-       MEMBERS
-    ================================================== */
-
-    const departmentMemberList =
-        document.getElementById(
-            "departmentMemberList"
-        );
-
-
-    departmentMemberList.innerHTML = "";
-
-
-    selectedDepartment.members.forEach(
-        (departmentMember) => {
-
-            departmentMemberList.innerHTML += `
-
-                <div class="department-member-card">
-
-                    <div class="department-member-image">
-
-                        <img
-                            src="${departmentMember.image}"
-                            alt="${departmentMember.name}"
-                        >
-
-                    </div>
-
-                    <div class="department-member-info">
-
-                        <h4>
-                            ${departmentMember.name}
-                        </h4>
-
-                        <span>
-                            ${departmentMember.role}
-                        </span>
-
-                    </div>
-
-                </div>
-
-            `;
-
-        }
-    );
-
-
-
-    /* =================================================
-       PROGRAMS
-    ================================================== */
-
-    const departmentProgramList =
-        document.getElementById(
-            "departmentProgramList"
-        );
-
-
-    departmentProgramList.innerHTML = "";
-
-
-    selectedDepartment.programs.forEach(
-        (departmentProgram) => {
-
-            departmentProgramList.innerHTML += `
-
-                <a
-                    href="${departmentProgram.link}"
-                    class="department-program-card"
-                >
-
-                    <div class="department-program-image">
-
-                        <img
-                            src="${departmentProgram.image}"
-                            alt="${departmentProgram.name}"
-                        >
-
-                    </div>
-
-
-                    <div class="department-program-info">
-
-                        <h4>
-                            ${departmentProgram.name}
-                        </h4>
-
-                        <p>
-                            ${departmentProgram.description}
-                        </p>
-
-                        <span>
-                            EXPLORE →
-                        </span>
-
-                    </div>
-
-                </a>
-
-            `;
-
-        }
-    );
-
-
-
-    /* =================================================
-       SHOW MODAL
-    ================================================== */
-
-    document
-        .getElementById("departmentProfileModal")
-        .classList.add("active");
-
-
-    document.body.style.overflow = "hidden";
-
+function setupDepartmentModal(){
+  document.getElementById("departmentModalClose").addEventListener("click",closeDepartmentModal);
+  document.getElementById("departmentModalBackdrop").addEventListener("click",closeDepartmentModal);
 }
 
 
-
 /* =====================================================
-   CLOSE DEPARTMENT MODAL
-===================================================== */
+   FOUNDERS + EVERYONE WHO JOINED
+   ===================================================== */
+const founderData = [
+  {name:"Founder 01",role:"FOUNDER",image:"images/member1.jpg"},
+  {name:"Founder 02",role:"FOUNDER",image:"images/member2.jpg"},
+  {name:"Founder 03",role:"FOUNDER",image:"images/member3.jpg"},
+  {name:"Founder 04",role:"FOUNDER",image:"images/member4.jpg"},
+  {name:"Founder 05",role:"FOUNDER",image:"images/member5.jpg"},
+  {name:"Founder 06",role:"FOUNDER",image:"images/member6.jpg"},
+  {name:"Founder 07",role:"FOUNDER",image:"images/member1.jpg"},
+  {name:"Founder 08",role:"FOUNDER",image:"images/member2.jpg"}
+];
 
-function closeDepartmentModal() {
+const peopleData = [
+  {name:"Member 01",role:"AKAR NUSA",image:"images/member1.jpg"},
+  {name:"Member 02",role:"AKAR NUSA",image:"images/member2.jpg"},
+  {name:"Member 03",role:"AKAR NUSA",image:"images/member3.jpg"},
+  {name:"Member 04",role:"AKAR NUSA",image:"images/member4.jpg"},
+  {name:"Member 05",role:"AKAR NUSA",image:"images/member5.jpg"},
+  {name:"Member 06",role:"AKAR NUSA",image:"images/member6.jpg"},
+  {name:"Member 07",role:"AKAR NUSA",image:"images/member1.jpg"},
+  {name:"Member 08",role:"AKAR NUSA",image:"images/member2.jpg"},
+  {name:"Member 09",role:"AKAR NUSA",image:"images/member3.jpg"},
+  {name:"Member 10",role:"AKAR NUSA",image:"images/member4.jpg"},
+  {name:"Member 11",role:"AKAR NUSA",image:"images/member5.jpg"},
+  {name:"Member 12",role:"AKAR NUSA",image:"images/member6.jpg"}
+];
 
-    document
-        .getElementById("departmentProfileModal")
-        .classList.remove("active");
+function renderFounders(){
+  const grid=document.getElementById("founderGrid");
+  if(!grid) return;
+  grid.innerHTML=founderData.map(p=>personCard(p,"founder-card")).join("");
+}
 
+function renderPeople(){
+  const track=document.getElementById("peopleTrack");
+  if(!track) return;
 
-    document.body.style.overflow = "";
-
+  // Duplicate the list once so the CSS animation can loop continuously.
+  // No hover pause: the carousel keeps moving even when the cursor is over it.
+  const doubled=[...peopleData,...peopleData];
+  track.innerHTML=doubled.map(p=>personCard(p,"people-card")).join("");
+  track.style.transform="translateX(0)";
+  track.style.transition="none";
 }
 
 
+renderDepartments();
+renderFounders();
+renderPeople();
+setupDepartmentModal();
 
-/* =====================================================
-   ESCAPE KEY
-===================================================== */
+    document.addEventListener("keydown", e => { if(e.key === "Escape") closeDepartmentModal(); });
 
-document.addEventListener(
-    "keydown",
-    function(departmentEvent) {
-
-        if (
-            departmentEvent.key === "Escape"
-        ) {
-
-            closeDepartmentModal();
-
-        }
-
-    }
-);
     })();
   </script>
 </body>
