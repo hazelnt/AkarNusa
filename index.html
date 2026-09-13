@@ -292,7 +292,7 @@
     /* ---------- OVERLAY (diperbaiki sesuai contoh) ---------- */
     .activity-overlay {
     z-index: 12000;
-      position: fixed;
+      position: fixed !important;
       inset: 0;
       background: rgba(0, 0, 0, 0.7);
       backdrop-filter: blur(8px);
@@ -331,7 +331,7 @@
       max-width: 1200px;
       max-height: 92vh;
       background: #ffffff;
-      border-radius: 28px;
+      border-radius: 34px;
       display: flex;
       overflow: hidden;
       box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
@@ -1367,7 +1367,7 @@
         flex-direction: column;
         max-height: 95vh;
         overflow-y: auto;
-        border-radius: 20px;
+        border-radius: 26px;
       }
       .overlay-left {
         padding: 20px 20px 10px 20px;
@@ -1437,7 +1437,7 @@
         font-size: 24px;
       }
       .activity-window {
-        border-radius: 16px;
+        border-radius: 20px;
       }
       .overlay-right h2 {
         font-size: 26px;
@@ -1617,9 +1617,6 @@
 .people-card{flex:0 0 calc((100% - 54px)/4)}
 .people-nav{width:42px;height:42px;border:1px solid #ccd5cd;background:#fff;color:#1f3025;font-size:28px;cursor:pointer;display:grid;place-items:center;transition:.25s}
 .people-nav:hover{background:#1f3025;color:#fff}
-.people-dots{display:flex;justify-content:center;gap:7px;margin-top:22px}
-.people-dot{width:7px;height:7px;border-radius:50%;border:0;background:#c7d0c8;cursor:pointer}
-.people-dot.active{background:#65806b;transform:scale(1.25)}
 
 /* ---------- DEPARTMENT POPUP: intentionally different from the activity popup ---------- */
 .department-modal{
@@ -1642,7 +1639,7 @@
   overflow-y:auto;
   background:#f8f9f4;
   border:1px solid rgba(255,255,255,.5);
-  border-radius:0;
+  border-radius:28px;
   box-shadow:0 30px 90px rgba(0,0,0,.28);
   padding:52px;
   transform:translateY(18px) scale(.97);
@@ -1650,12 +1647,8 @@
 }
 .department-modal.active .department-modal-window{transform:translateY(0) scale(1)}
 .department-modal-close{
-  position:absolute;right:20px;top:20px;
-  width:42px;height:42px;border:1px solid #d9dfd8;
-  background:#fff;color:#26372c;border-radius:50%;
-  font-size:24px;cursor:pointer;transition:.2s;z-index:50;pointer-events:auto;
+  position:absolute;right:20px;top:20px;z-index:50;pointer-events:auto;
 }
-.department-modal-close:hover{transform:rotate(90deg);background:#1f3025;color:#fff}
 .department-modal-header{text-align:center;max-width:720px;margin:0 auto 22px}
 .department-modal-header .eyebrow{font-size:10px;font-weight:700;letter-spacing:3px;color:#65806b}
 .department-modal-header h2{margin:10px 0 12px;font-size:clamp(38px,5vw,62px);line-height:.98;color:#1f3025}
@@ -1687,7 +1680,7 @@
 .department-activities-popup .department-program-info span{font-size:9px;font-weight:700;letter-spacing:1px;color:#477a55}
 .department-empty{padding:18px;background:#fff;border:1px solid #e1e6e1;color:#737a74;font-size:12px;line-height:1.7;text-align:center}
 
-.activities .section-title{text-align:center;max-width:760px;margin:0 auto 20px}.activities .section-title h2{font-size:clamp(40px,5vw,65px);line-height:.95;color:#1f3025;margin:12px 0 20px}.activities .section-title p{color:#707771;line-height:1.8}.activity-dots{display:flex;justify-content:center;align-items:center;gap:8px;margin:10px 0 28px}.activity-dot{width:8px;height:8px;padding:0;border:0;border-radius:50%;background:#c7d0c8;opacity:.7;cursor:pointer;transition:transform .3s ease,background .3s ease,opacity .3s ease}.activity-dot.active{background:#1f6e43;opacity:1;transform:scale(1.25)}.contact-modern{background:#1f4332;color:#fff;padding:50px 7% 45px;text-align:center}.contact-inner>span{font-size:10px;letter-spacing:3px;font-weight:700;opacity:.75}.contact-inner h2{font-size:clamp(34px,4vw,54px);margin:12px 0 30px}.social-links{display:flex;justify-content:center;align-items:center;gap:22px}.social-icon{width:40px;height:40px;display:grid;place-items:center;border:0;border-radius:50%;color:#fff;transition:transform .25s,background .25s}.social-icon svg{display:block}.social-icon:hover{transform:translateY(-4px);background:rgba(255,255,255,.12)}
+.activities .section-title{text-align:center;max-width:760px;margin:0 auto 20px}.activities .section-title h2{font-size:clamp(40px,5vw,65px);line-height:.95;color:#1f3025;margin:12px 0 20px}.activities .section-title p{color:#707771;line-height:1.8}.contact-modern{background:#1f4332;color:#fff;padding:50px 7% 45px;text-align:center}.contact-inner>span{font-size:10px;letter-spacing:3px;font-weight:700;opacity:.75}.contact-inner h2{font-size:clamp(34px,4vw,54px);margin:12px 0 30px}.social-links{display:flex;justify-content:center;align-items:center;gap:22px}.social-icon{width:40px;height:40px;display:grid;place-items:center;border:0;border-radius:50%;color:#fff;transition:transform .25s,background .25s}.social-icon svg{display:block}.social-icon:hover{transform:translateY(-4px);background:rgba(255,255,255,.12)}
 @media(max-width:1000px){.founder-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.member-area{grid-template-columns:repeat(3,minmax(0,1fr))}.people-card{flex-basis:calc((100% - 18px)/2)}}@media(max-width:700px){.departments-modern{padding:75px 20px 60px}.department-block{padding:20px}.department-block-head{display:block}.department-block-head h3{margin-top:8px}.leader-card{display:block}.leader-card .person-photo{width:100%;height:auto;aspect-ratio:1/1}.member-area{grid-template-columns:repeat(2,minmax(0,1fr))}.founder-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.people-card{flex-basis:100%}.people-nav{width:36px;height:36px;font-size:24px}.social-links{gap:12px}.social-icon{width:42px;height:42px}}
 
 
@@ -1744,7 +1737,7 @@
 /* Founders: keep eight frames */
 .founders-section{margin-top:95px}
 .founder-grid{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:12px;max-width:1180px;margin:0 auto}
-.founder-card{border:1px solid #e1e6e1;background:#fff;overflow:hidden}
+.founder-card{border:1px solid #e1e6e1;background:#fff;overflow:hidden;border-radius:14px;box-shadow:0 8px 20px rgba(31,48,37,.08)}
 
 /* Everyone who joined: circular, smooth, continuous carousel */
 .people-section{margin-top:95px;overflow:hidden}
@@ -1757,13 +1750,77 @@
 .people-card .person-meta{padding:11px 3px 0}
 .people-card .person-meta h4{font-size:13px;color:#1f3025;margin:0 0 4px;white-space:nowrap}
 .people-card .person-meta span{font-size:9px;color:#788178}
-.people-nav,.people-dots{display:none}
+.people-nav{display:none}
 @keyframes peopleSmooth{from{transform:translateX(0)}to{transform:translateX(calc(-50% + 14px))}}
 @media(max-width:1100px){.department-list-modern{grid-template-columns:repeat(3,minmax(0,1fr))}.founder-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
 @media(max-width:700px){.department-list-modern{grid-template-columns:1fr}.department-card{height:330px}.founder-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.people-track{gap:20px}.people-card{flex-basis:130px}.people-card .person-photo{width:105px;height:105px}}
 </style>
 
 <style id="patch-overrides">
+/* ===== SCROLL PROGRESS + BACK TO TOP ===== */
+.scroll-progress{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  z-index: 1001;
+  background: transparent;
+  pointer-events: none;
+}
+.scroll-progress-bar{
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #24eb9b, #1F6E43);
+  transition: width 0.1s linear;
+}
+.back-to-top{
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: 0;
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: #fff;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  box-shadow: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: opacity .3s ease, transform .3s ease, visibility .3s ease, background .3s ease, backdrop-filter .3s ease, box-shadow .3s ease;
+  z-index: 999;
+}
+.back-to-top img{
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  transform: rotate(90deg);
+  pointer-events: none;
+}
+.back-to-top.is-visible{
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.back-to-top:hover{
+  background: rgba(36,235,155,0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 0 18px 4px rgba(36,235,155,.75), 0 0 40px 10px rgba(36,235,155,.4);
+}
+@media(max-width:700px){
+  .back-to-top{width:46px;height:46px;right:16px;bottom:16px;font-size:18px}
+  .back-to-top img{width:22px;height:22px}
+}
+
 /* ===== PAGE LOADER (bouncy entrance) ===== */
 .page-loader{
   position: fixed;
@@ -2334,6 +2391,11 @@ footer {
 .social-icon:hover{
   background: rgba(255,255,255,.12) !important;
 }
+.contact-inner{max-width:640px;margin:0 auto;}
+.contact-lead{margin:0 auto 28px;max-width:480px;font-size:15px;line-height:1.7;color:rgba(255,255,255,.82);}
+.contact-cta{display:inline-block;margin-bottom:36px;padding:14px 34px;border-radius:999px;background:#24eb9b;color:#12271c;font-weight:700;font-size:13px;letter-spacing:1px;text-decoration:none;text-transform:uppercase;transition:transform .25s ease,box-shadow .25s ease;}
+.contact-cta:hover{transform:translateY(-3px);box-shadow:0 10px 25px rgba(36,235,155,.35);}
+@media(max-width:700px){.contact-cta{padding:13px 28px;font-size:12px;}}
 
 /* Subtle continuous grain tying the whole green run together */
 .activities,
@@ -2373,10 +2435,6 @@ footer {
 .founder-card{
   border-color: #eef4ef !important;
 }
-.activity-dot{
-  background: #eef4ef !important;
-  opacity: .45 !important;
-}
 
 /* Text/UI contrast on the new dark/gold backgrounds */
 .activities .section-title h2,
@@ -2386,12 +2444,6 @@ footer {
 .activities .section-title p,
 .activity-info p{
   color: rgba(255,255,255,0.82) !important;
-}
-.activity-dot{
-  background: rgba(255,255,255,0.4) !important;
-}
-.activity-dot.active{
-  background: #ffffff !important;
 }
 .founders-section .modern-section-heading > span,
 .people-section .modern-section-heading > span{
@@ -2447,6 +2499,12 @@ footer {
     </ul>
   </nav>
 
+  <!-- SCROLL PROGRESS -->
+  <div class="scroll-progress" aria-hidden="true"><div class="scroll-progress-bar" id="scrollProgressBar"></div></div>
+
+  <!-- BACK TO TOP -->
+  <button id="backToTop" class="back-to-top" aria-label="Back to top"><img src="bird.png" alt="" /></button>
+
   <!-- HERO -->
   <header class="hero">
     <video class="hero-video" autoplay muted loop playsinline poster="GYAF2026_V4_WebBanner.png">
@@ -2459,13 +2517,13 @@ footer {
   <section id="about" class="about about-scrapbook">
 
     <!-- decorative scrapbook shapes (real art assets) -->
-    <div class="scrap-deco deco-teal-blob" aria-hidden="true"><img src="Vector 147.png" alt=""></div>
-    <div class="scrap-deco deco-blue-burst" aria-hidden="true"><img src="Star 7.png" alt=""></div>
-    <div class="scrap-deco deco-olive-blob" aria-hidden="true"><img src="Vector 148.png" alt=""></div>
-    <div class="scrap-deco deco-spiral" aria-hidden="true"><img src="Vector 156.png" alt=""></div>
-    <div class="scrap-deco deco-drips" aria-hidden="true"><img src="Group 71.png" alt=""></div>
-    <div class="scrap-deco deco-star-left" aria-hidden="true"><img src="Star 6.png" alt=""></div>
-    <div class="scrap-deco deco-star-right" aria-hidden="true"><img src="Star 6.png" alt=""></div>
+    <div class="scrap-deco deco-teal-blob" aria-hidden="true"><img loading="lazy" decoding="async" src="Vector 147.png" alt=""></div>
+    <div class="scrap-deco deco-blue-burst" aria-hidden="true"><img loading="lazy" decoding="async" src="Star 7.png" alt=""></div>
+    <div class="scrap-deco deco-olive-blob" aria-hidden="true"><img loading="lazy" decoding="async" src="Vector 148.png" alt=""></div>
+    <div class="scrap-deco deco-spiral" aria-hidden="true"><img loading="lazy" decoding="async" src="Vector 156.png" alt=""></div>
+    <div class="scrap-deco deco-drips" aria-hidden="true"><img loading="lazy" decoding="async" src="Group 71.png" alt=""></div>
+    <div class="scrap-deco deco-star-left" aria-hidden="true"><img loading="lazy" decoding="async" src="Star 6.png" alt=""></div>
+    <div class="scrap-deco deco-star-right" aria-hidden="true"><img loading="lazy" decoding="async" src="Star 6.png" alt=""></div>
 
     <div class="scrap-card card-what">
       <h2>What is AkarNusa ?</h2>
@@ -2473,10 +2531,10 @@ footer {
         <b>Akar Nusa is a non-profit organization focusing on the environment and education.</b> Our mission is to raise awareness and encourage the younger generation to take concrete action towards sustainable development. Our work has been recognized by the International Baccalaureate (IB), including through funding support and opportunities that have enabled us to further develop and expand our sustainability and education initiatives.
 
           Akar Nusa's programs include
-          <a href="#education" class="mint">Akar NuAction</a>,
-          <a href="#environment" class="blue">Akar NuCycle</a>,
-          <a href="#stories" class="rainbow">Akar Nusa Tales</a>,
-          and <a href="#greenleap" class="green">GreenLeap</a>.
+          <a href="#" class="mint" onclick="openDepartmentModal(3);return false;">Akar NuAction</a>,
+          <a href="#" class="blue" onclick="openDepartmentModal(2);return false;">Akar NuCycle</a>,
+          <a href="#" class="rainbow" onclick="openDepartmentModal(4);return false;">Akar Nusa Tales</a>,
+          and <a href="#" class="green" onclick="openDepartmentModal(1);return false;">GreenLeap</a>.
       </p>
     </div>
 
@@ -2493,7 +2551,7 @@ footer {
      DEPARTMENT SECTION
 ===================================================== -->
 <section id="departments" class="departments-modern departments-dark">
-  <div class="scrap-deco deco-dept-leaf" aria-hidden="true"><img src="Vector 146.png" alt=""></div>
+  <div class="scrap-deco deco-dept-leaf" aria-hidden="true"><img loading="lazy" decoding="async" src="Vector 146.png" alt=""></div>
   <div class="modern-section-heading heading-glow-box">
     <div class="heading-glow-inner">
       <h2>The People Behind<br><em>Every Action.</em></h2>
@@ -2508,7 +2566,7 @@ footer {
 <div class="department-modal" id="departmentModal" aria-hidden="true">
   <div class="department-modal-backdrop" id="departmentModalBackdrop"></div>
   <div class="department-modal-window" role="dialog" aria-modal="true" aria-labelledby="departmentModalName">
-    <button class="department-modal-close" id="departmentModalClose" aria-label="Close department">×</button>
+    <button class="department-modal-close close-btn" id="departmentModalClose" aria-label="Close department">✕</button>
 
     <header class="department-modal-header">
       <span class="eyebrow" id="departmentModalCategory">DEPARTMENT</span>
@@ -2542,12 +2600,12 @@ footer {
 
 <!-- ACTIVITIES -->
   <section id="activities" class="activities">
-    <div class="scrap-deco deco-leaf-left" aria-hidden="true"><img src="Vector 101.png" alt=""></div>
-    <div class="scrap-deco deco-flower-right" aria-hidden="true"><img src="Group 64.png" alt=""></div>
-    <div class="scrap-deco deco-carousel-left" aria-hidden="true"><img src="Vector 139.png" alt=""></div>
-    <div class="scrap-deco deco-carousel-left-2" aria-hidden="true"><img src="Ellipse 32.png" alt=""></div>
-    <div class="scrap-deco deco-carousel-right" aria-hidden="true"><img src="Vector 107.png" alt=""></div>
-    <div class="scrap-deco deco-carousel-right-2" aria-hidden="true"><img src="Group 72.png" alt=""></div>
+    <div class="scrap-deco deco-leaf-left" aria-hidden="true"><img loading="lazy" decoding="async" src="Vector 101.png" alt=""></div>
+    <div class="scrap-deco deco-flower-right" aria-hidden="true"><img loading="lazy" decoding="async" src="Group 64.png" alt=""></div>
+    <div class="scrap-deco deco-carousel-left" aria-hidden="true"><img loading="lazy" decoding="async" src="Vector 139.png" alt=""></div>
+    <div class="scrap-deco deco-carousel-left-2" aria-hidden="true"><img loading="lazy" decoding="async" src="Ellipse 32.png" alt=""></div>
+    <div class="scrap-deco deco-carousel-right" aria-hidden="true"><img loading="lazy" decoding="async" src="Vector 107.png" alt=""></div>
+    <div class="scrap-deco deco-carousel-right-2" aria-hidden="true"><img loading="lazy" decoding="async" src="Group 72.png" alt=""></div>
     <div class="section-title">
       <h2>Our Activities</h2>
       <p>Growing together through meaningful actions.</p>
@@ -2565,7 +2623,7 @@ footer {
         data-participants="120+"
         data-list="Environmental Workshop|School Visit|Tree Planting|Awareness Campaign"
         data-images="IMG_8234.jpg,IMG_8228.jpg,IMG_8181.jpg,IMG_8279.jpg">
-        <img src="IMG_8234.jpg" alt="GreenLeap" />
+        <img src="IMG_8234.jpg" alt="GreenLeap" loading="lazy" decoding="async" />
       </div>
       <!-- AKAR NUCYCLE -->
       <div class="card"
@@ -2577,7 +2635,7 @@ footer {
         data-participants="80+"
         data-list="Waste Sorting|Plastic Recycling|Composting|Public Education"
         data-images="activity2.jpg,activity3.jpg,activity4.jpg,activity5.jpg">
-        <img src="activity2.jpg" alt="Akar NuCycle" />
+        <img src="activity2.jpg" alt="Akar NuCycle" loading="lazy" decoding="async" />
       </div>
       <!-- AKAR NUACTION -->
       <div class="card"
@@ -2589,7 +2647,7 @@ footer {
         data-participants="150+"
         data-list="Tree Planting|River Cleanup|Volunteer Day|Community Service"
         data-images="nuaction.jpeg,BF792313-94DB-49D3-AFB0-C859D0E57840.jpg,DSC09325.JPG,IMG_6298.jpg">
-        <img src="nuaction.jpeg" alt="Akar NuAction" />
+        <img src="nuaction.jpeg" alt="Akar NuAction" loading="lazy" decoding="async" />
       </div>
       <!-- TALES -->
       <div class="card"
@@ -2602,7 +2660,7 @@ footer {
         data-participants="60+"
         data-list="Storytelling|Podcast|Educational Content|Discussion"
         data-images="activity4.jpg,activity5.jpg,activity1.jpg,activity2.jpg">
-        <img src="activity4.jpg" alt="Akar Nusa Tales" />
+        <img src="activity4.jpg" alt="Akar Nusa Tales" loading="lazy" decoding="async" />
       </div>
       <!-- TREE PLANTING -->
       <div class="card"
@@ -2615,7 +2673,7 @@ footer {
         data-participants="200+"
         data-list="Planting Trees|Monitoring|Maintenance|Education"
         data-images="01.jpg,activity1.jpg,activity2.jpg,activity3.jpg">
-        <img src="01.jpg" alt="Tree Planting" />
+        <img src="01.jpg" alt="Tree Planting" loading="lazy" decoding="async" />
       </div>
       
     </div>
@@ -2625,42 +2683,43 @@ footer {
       <h3 id="activity-title">GreenLeap</h3>
       <p id="activity-desc">Environmental education for young people.</p>
     </div>
+  </section>
 
-    <div class="activity-dots" id="activityDots" aria-label="Activity carousel navigation"></div>
+  <!-- OVERLAY DETAIL (kept outside #activities on purpose: that section
+       is an isolated stacking context for the sticky-hero overlap effect,
+       which would otherwise trap this popup below other page content
+       no matter how high its z-index is) -->
+  <div id="activityOverlay" class="activity-overlay">
+    <div class="activity-window">
+      <button id="closeOverlay" class="close-btn">✕</button>
 
-    <!-- OVERLAY DETAIL -->
-    <div id="activityOverlay" class="activity-overlay">
-      <div class="activity-window">
-        <button id="closeOverlay" class="close-btn">✕</button>
-
-        <!-- LEFT: GALLERY -->
-        <div class="overlay-left">
-          <div class="main-image">
-            <img id="overlayMainImage" src="activity1.jpg" alt="Activity" />
-          </div>
-          <div id="thumbnailContainer" class="thumbnail-container"></div>
+      <!-- LEFT: GALLERY -->
+      <div class="overlay-left">
+        <div class="main-image">
+          <img id="overlayMainImage" src="activity1.jpg" alt="Activity" loading="lazy" decoding="async" />
         </div>
+        <div id="thumbnailContainer" class="thumbnail-container"></div>
+      </div>
 
-        <!-- RIGHT: CONTENT -->
-        <div class="overlay-right">
-        <span id="overlayLabel" class="program-label">GREENLEAP PROGRAM</span>
-        <h2 id="overlayTitle">GreenLeap</h2>
-          <p class="description" id="overlayDescription">GreenLeap is an environmental education program that empowers students through workshops, sustainability campaigns, environmental actions, and collaboration with schools.</p>
+      <!-- RIGHT: CONTENT -->
+      <div class="overlay-right">
+      <span id="overlayLabel" class="program-label">GREENLEAP PROGRAM</span>
+      <h2 id="overlayTitle">GreenLeap</h2>
+        <p class="description" id="overlayDescription">GreenLeap is an environmental education program that empowers students through workshops, sustainability campaigns, environmental actions, and collaboration with schools.</p>
 
-          <div class="divider"></div>
+        <div class="divider"></div>
 
-          <h3>What We Did</h3>
-          <ul id="overlayList"></ul>
+        <h3>What We Did</h3>
+        <ul id="overlayList"></ul>
 
-          <div class="divider"></div>
-          </div>
+        <div class="divider"></div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
   <section class="founders-section">
-    <div class="scrap-deco deco-purple-triangle" aria-hidden="true"><img src="Polygon 1.png" alt=""></div>
-    <div class="scrap-deco deco-orange-rings" aria-hidden="true"><img src="Group 79.png" alt=""></div>
+    <div class="scrap-deco deco-purple-triangle" aria-hidden="true"><img loading="lazy" decoding="async" src="Polygon 1.png" alt=""></div>
+    <div class="scrap-deco deco-orange-rings" aria-hidden="true"><img loading="lazy" decoding="async" src="Group 79.png" alt=""></div>
     <div class="modern-section-heading compact">
       <span>THE FOUNDERS</span>
       <h2>The Roots of <em>Akar Nusa.</em></h2>
@@ -2670,8 +2729,8 @@ footer {
   </section>
 
   <section class="people-section">
-    <div class="scrap-deco deco-pink-ribbon" aria-hidden="true"><img src="Vector 118.png" alt=""></div>
-    <div class="scrap-deco deco-orange-rings-2" aria-hidden="true"><img src="Subtract-1.png" alt=""></div>
+    <div class="scrap-deco deco-pink-ribbon" aria-hidden="true"><img loading="lazy" decoding="async" src="Vector 118.png" alt=""></div>
+    <div class="scrap-deco deco-orange-rings-2" aria-hidden="true"><img loading="lazy" decoding="async" src="Subtract-1.png" alt=""></div>
     <div class="modern-section-heading compact">
       <span>EVERYONE WHO JOINED</span>
       <h2>Akar Nusa <em>People.</em></h2>
@@ -2682,12 +2741,12 @@ footer {
       <div class="people-carousel" id="peopleCarousel"><div class="people-track" id="peopleTrack"></div></div>
       <button class="people-nav next" id="peopleNext" aria-label="Next people">›</button>
     </div>
-    <div class="people-dots" id="peopleDots"></div>
   </section>
 
 
 <!-- CONTACT -->
-<section id="contact" class="contact contact-modern"><div class="contact-inner"><div class="social-links">
+<section id="contact" class="contact contact-modern"><div class="contact-inner">
+<div class="social-links">
 <a href="#" aria-label="YouTube" class="social-icon"><svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4l6.3 3.6-6.3 3.6Z"/></svg></a>
 <a href="https://www.instagram.com/akarnusa_id?utm_source=ig_web_button_share_sheet&igsi=ZDNlZDc0MzIxNw==" aria-label="Instagram" class="social-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.05 2 .25 2.5.4a5 5 0 0 1 1.8 1.2 5 5 0 0 1 1.2 1.8c.15.5.35 1.3.4 2.5.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.05 1.2-.25 2-.4 2.5a5 5 0 0 1-1.2 1.8 5 5 0 0 1-1.8 1.2c-.5.15-1.3.35-2.5.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.05-2-.25-2.5-.4a5 5 0 0 1-1.8-1.2 5 5 0 0 1-1.2-1.8c-.15-.5-.35-1.3-.4-2.5-.1-1.3-.1-1.7-.1-4.9s0-3.6.1-4.9c.05-1.2.25-2 .4-2.5a5 5 0 0 1 1.2-1.8 5 5 0 0 1 1.8-1.2c.5-.15 1.3-.35 2.5-.4C8.4 2.2 8.8 2.2 12 2.2Zm0 1.8c-3.15 0-3.52 0-4.76.07-1 .04-1.5.2-1.86.34a3.2 3.2 0 0 0-1.17.76 3.2 3.2 0 0 0-.76 1.17c-.14.36-.3.86-.34 1.86C3 9.24 3 9.6 3 12.76c0 3.15 0 3.52.07 4.76.04 1 .2 1.5.34 1.86.16.4.36.75.76 1.17.42.4.77.6 1.17.76.36.14.86.3 1.86.34 1.24.07 1.61.07 4.76.07 3.15 0 3.52 0 4.76-.07 1-.04 1.5-.2 1.86-.34a3.2 3.2 0 0 0 1.17-.76 3.2 3.2 0 0 0 .76-1.17c.14-.36.3-.86.34-1.86.07-1.24.07-1.61.07-4.76 0-3.15 0-3.52-.07-4.76-.04-1-.2-1.5-.34-1.86a3.2 3.2 0 0 0-.76-1.17 3.2 3.2 0 0 0-1.17-.76c-.36-.14-.86-.3-1.86-.34C15.52 4 15.15 4 12 4Zm0 3.5a5.3 5.3 0 1 1 0 10.6 5.3 5.3 0 0 1 0-10.6Zm0 1.8a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7Zm5.5-2a1.24 1.24 0 1 1 0 2.48 1.24 1.24 0 0 1 0-2.48Z"/></svg></a>
 <a href="#" aria-label="TikTok" class="social-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M16.6 2h-3.3v13.9a3 3 0 1 1-2.2-2.9V9.6a6.2 6.2 0 1 0 5.5 6.2V8.4a8.3 8.3 0 0 0 4.9 1.6V6.7a5 5 0 0 1-4.9-4.7Z"/></svg></a>
@@ -2704,6 +2763,24 @@ footer {
       window.addEventListener("scroll", () => {
         navbar.classList.toggle("scrolled", window.scrollY > 80);
       });
+
+      // ---------- SCROLL PROGRESS + BACK TO TOP ----------
+      const scrollProgressBar = document.getElementById("scrollProgressBar");
+      const backToTopBtn = document.getElementById("backToTop");
+      function updateScrollAids() {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        if (scrollProgressBar) scrollProgressBar.style.width = progress + "%";
+        if (backToTopBtn) backToTopBtn.classList.toggle("is-visible", scrollTop > window.innerHeight * 0.6);
+      }
+      window.addEventListener("scroll", updateScrollAids, { passive: true });
+      updateScrollAids();
+      if (backToTopBtn) {
+        backToTopBtn.addEventListener("click", () => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+      }
 
       // ---------- HERO VIDEO + MUSIC (header only) ----------
       const heroEl = document.querySelector(".hero");
@@ -2866,6 +2943,12 @@ coverflowInterval = setInterval(nextCard, 3000);
       function openOverlay(card) {
         const departmentModal = document.getElementById("departmentModal");
         activityOpenedFromDepartment = !!departmentModal?.classList.contains("active");
+        // Hide the department popup while the activity popup is open, instead of
+        // stacking one popup on top of the other (which looked like a double overlay).
+        if (activityOpenedFromDepartment) {
+          departmentModal.classList.remove("active");
+          departmentModal.setAttribute("aria-hidden", "true");
+        }
         overlay.classList.add("show");
         overlayTitle.textContent = card.dataset.title;
         overlayDesc.textContent = card.dataset.long;
@@ -2889,8 +2972,13 @@ coverflowInterval = setInterval(nextCard, 3000);
         overlay.classList.remove("show");
         clearInterval(galleryTimer);
         // If the activity popup was opened from a department popup,
-        // keep the department popup open underneath it.
-        if (!activityOpenedFromDepartment) {
+        // bring the department popup back when the activity popup closes.
+        if (activityOpenedFromDepartment) {
+          const departmentModal = document.getElementById("departmentModal");
+          departmentModal.classList.add("active");
+          departmentModal.setAttribute("aria-hidden", "false");
+          document.body.style.overflow = "hidden";
+        } else {
           document.body.style.overflow = "";
         }
         activityOpenedFromDepartment = false;
