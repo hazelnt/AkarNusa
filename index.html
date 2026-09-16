@@ -279,7 +279,7 @@
 
 .activity-info h3 {
   font-size: 34px;
-  color: #1F6E43;
+  color: var(--department-color, #1F6E43);
   margin-bottom: 8px;
 }
 
@@ -769,19 +769,37 @@
 ===================================================== */
 
 .department-card-green {
-    --department-color: #3f7d50;
+    --department-color: #3fae5c;
 }
 
 .department-card-blue {
-    --department-color: #3978a8;
+    --department-color: #3f9ec0;
 }
 
-.department-card-orange {
-    --department-color: #d4773f;
+.department-card-mint {
+    --department-color: #24eb9b;
 }
 
-.department-card-purple {
-    --department-color: #795b91;
+.department-card-rainbow {
+    --department-color: #4D96FF;
+}
+
+.department-card-rainbow .department-card-info h3 {
+    background: linear-gradient(90deg, #FF6B6B, #FFD93D, #6BCB77, #4D96FF);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.department-card-rainbow .department-modal-header h2 {
+    background: linear-gradient(90deg, #FF6B6B, #FFD93D, #6BCB77, #4D96FF);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.department-card-rainbow .department-card-back {
+    background: linear-gradient(120deg, #FF6B6B, #FFD93D, #6BCB77, #4D96FF);
 }
 
 .department-card-pink {
@@ -1651,7 +1669,7 @@
 }
 .department-modal-header{text-align:center;max-width:720px;margin:0 auto 22px}
 .department-modal-header .eyebrow{font-size:10px;font-weight:700;letter-spacing:3px;color:#65806b}
-.department-modal-header h2{margin:10px 0 12px;font-size:clamp(38px,5vw,62px);line-height:.98;color:#1f3025}
+.department-modal-header h2{margin:10px 0 12px;font-size:clamp(38px,5vw,62px);line-height:.98;color:var(--department-color,#1f3025)}
 .department-modal-header p{font-size:13px;line-height:1.75;color:#707771;max-width:620px;margin:0 auto}
 .department-modal-section{margin-top:22px}
 .department-modal-section-title{text-align:center;margin-bottom:18px}
@@ -1726,13 +1744,13 @@
 .department-card-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
 .department-card:hover .department-card-image img{transform:scale(1.06)}
 .department-card-info{flex:1;padding:13px 15px;display:flex;flex-direction:column;justify-content:center}
-.department-card-info h3{margin:0 0 7px;color:#1f3025;font-size:21px;line-height:1.1}
+.department-card-info h3{margin:0 0 7px;color:var(--department-color,#1f3025);font-size:21px;line-height:1.1}
 .department-card-info p{margin:0;color:#707771;font-size:11px;line-height:1.55}
 .department-card-back{display:flex;flex-direction:column;justify-content:center;padding:28px;background:var(--department-color,#3f7d50);color:#fff;transform:rotateY(180deg)}
 .department-card-back h3{margin:0 0 12px;font-size:27px;line-height:1.05;color:#fff}
 .department-card-back p{margin:0;color:rgba(255,255,255,.9);font-size:12px;line-height:1.7}
 .department-card-click{display:inline-block;margin-top:20px;font-size:9px;font-weight:700;letter-spacing:1.6px;color:#fff}
-.department-card-green{--department-color:#3f7d50}.department-card-blue{--department-color:#3978a8}.department-card-orange{--department-color:#d4773f}.department-card-purple{--department-color:#795b91}.department-card-pink{--department-color:#c96b8d}
+.department-card-green{--department-color:#3fae5c}.department-card-blue{--department-color:#3f9ec0}.department-card-mint{--department-color:#24eb9b}.department-card-rainbow{--department-color:#4D96FF}.department-card-rainbow .department-card-info h3{background:linear-gradient(90deg,#FF6B6B,#FFD93D,#6BCB77,#4D96FF);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}.department-card-rainbow .department-card-back{background:linear-gradient(120deg,#FF6B6B,#FFD93D,#6BCB77,#4D96FF)}.department-card-pink{--department-color:#c96b8d}
 
 /* Founders: keep eight frames */
 .founders-section{margin-top:95px}
@@ -2437,9 +2455,11 @@ footer {
 }
 
 /* Text/UI contrast on the new dark/gold backgrounds */
-.activities .section-title h2,
+.activities .section-title h2{
+  color: #eedd4b !important;
+}
 .activity-info h3{
-  color: #ffffff !important;
+  color: #1F6E43 !important;
 }
 .activities .section-title p,
 .activity-info p{
@@ -2554,7 +2574,7 @@ footer {
   <div class="scrap-deco deco-dept-leaf" aria-hidden="true"><img loading="lazy" decoding="async" src="Vector 146.png" alt=""></div>
   <div class="modern-section-heading heading-glow-box">
     <div class="heading-glow-inner">
-      <h2>The People Behind<br><em>Every Action.</em></h2>
+      <h2>The People Behind<br><em>Every Action</em></h2>
       <p>Five teams, one mission. Meet the people who keep Akar Nusa moving.</p>
     </div>
   </div>
@@ -2721,9 +2741,7 @@ footer {
     <div class="scrap-deco deco-purple-triangle" aria-hidden="true"><img loading="lazy" decoding="async" src="Polygon 1.png" alt=""></div>
     <div class="scrap-deco deco-orange-rings" aria-hidden="true"><img loading="lazy" decoding="async" src="Group 79.png" alt=""></div>
     <div class="modern-section-heading compact">
-      <span>THE FOUNDERS</span>
-      <h2>The Roots of <em>Akar Nusa.</em></h2>
-      <p>Eight founder frames for the people who started Akar Nusa.</p>
+      <h2>The Roots of <em>Akar Nusa</em></h2>
     </div>
     <div id="founderGrid" class="founder-grid"></div>
   </section>
@@ -2732,9 +2750,7 @@ footer {
     <div class="scrap-deco deco-pink-ribbon" aria-hidden="true"><img loading="lazy" decoding="async" src="Vector 118.png" alt=""></div>
     <div class="scrap-deco deco-orange-rings-2" aria-hidden="true"><img loading="lazy" decoding="async" src="Subtract-1.png" alt=""></div>
     <div class="modern-section-heading compact">
-      <span>EVERYONE WHO JOINED</span>
-      <h2>Akar Nusa <em>People.</em></h2>
-      <p>A smooth carousel for everyone who has ever been part of the journey.</p>
+      <h2>Akar Nusa <em>People</em></h2>
     </div>
     <div class="people-carousel-wrap">
       <button class="people-nav prev" id="peoplePrev" aria-label="Previous people">‹</button>
@@ -2864,6 +2880,13 @@ footer {
       const cards = document.querySelectorAll(".coverflow .card");
       const titleEl = document.getElementById("activity-title");
       const descEl = document.getElementById("activity-desc");
+      const activityDepartmentColors = {
+        "GreenLeap": "department-card-green",
+        "Akar NuCycle": "department-card-blue",
+        "Akar NuAction": "department-card-mint",
+        "Akar Nusa Tales": "department-card-green",
+        "Tree Planting": "department-card-mint"
+      };
       let currentCard = 0;
 
     function updateCarousel() {
@@ -2890,8 +2913,18 @@ footer {
   cards[right].classList.add("right");
 
   // Nama dan deskripsi
-  titleEl.textContent = cards[currentCard].dataset.title;
-  descEl.textContent = cards[currentCard].dataset.short;
+  const currentActivity = cards[currentCard];
+  titleEl.classList.remove(
+    "department-card-green",
+    "department-card-blue",
+    "department-card-mint",
+    "department-card-rainbow",
+    "department-card-pink",
+    "department-card-earth"
+  );
+  titleEl.classList.add(activityDepartmentColors[currentActivity.dataset.title] || "department-card-green");
+  titleEl.textContent = currentActivity.dataset.title;
+  descEl.textContent = currentActivity.dataset.short;
 }
       updateCarousel();
       function nextCard() {
@@ -3113,7 +3146,7 @@ const departmentData=[
   },
   {
     name:"Akar NuAction",
-    cardImage:"nuaction.jpeg", color:"department-card-orange",
+    cardImage:"nuaction.jpeg", color:"department-card-mint",
     category:"AKAR NUACTION",
     description:"Community environmental action powered by volunteers who restore real ecosystems through hands-on work.",
     activitiesKey:"nuaction",
@@ -3128,7 +3161,7 @@ const departmentData=[
   },
   {
     name:"Akar NusaTales",
-    cardImage:"activity4.jpg", color:"department-card-purple",
+    cardImage:"activity4.jpg", color:"department-card-rainbow",
     category:"AKAR NUSATALES",
     description:"Creative storytelling that spreads sustainability through media, stories, and educational content.",
     activitiesKey:"nusatales",
@@ -3201,6 +3234,16 @@ function makeDepartmentActivityCard(originalCard){
 function openDepartmentModal(index){
   const d=departmentData[index];
   if(!d)return;
+  const modal=document.getElementById("departmentModal");
+  modal.classList.remove(
+    "department-card-green",
+    "department-card-blue",
+    "department-card-mint",
+    "department-card-rainbow",
+    "department-card-pink",
+    "department-card-earth"
+  );
+  modal.classList.add(d.color);
   document.getElementById("departmentModalCategory").textContent=d.category;
   document.getElementById("departmentModalName").textContent=d.name;
   document.getElementById("departmentModalDescription").textContent=d.description;
@@ -3231,7 +3274,6 @@ function openDepartmentModal(index){
     programList.innerHTML='<p class="department-empty">Main & Support works across the organization in strategy, operations, coordination, partnerships, website, and technical support.</p>';
   }
 
-  const modal=document.getElementById("departmentModal");
   modal.classList.add("active");
   modal.setAttribute("aria-hidden","false");
   document.body.style.overflow="hidden";
