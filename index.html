@@ -279,7 +279,7 @@
 
 .activity-info h3 {
   font-size: 34px;
-  color: var(--department-color, #1F6E43);
+  color: #1F6E43;
   margin-bottom: 8px;
 }
 
@@ -791,13 +791,6 @@
     -webkit-text-fill-color: transparent;
 }
 
-.department-card-rainbow .department-modal-header h2 {
-    background: linear-gradient(90deg, #FF6B6B, #FFD93D, #6BCB77, #4D96FF);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
 .department-card-rainbow .department-card-back {
     background: linear-gradient(120deg, #FF6B6B, #FFD93D, #6BCB77, #4D96FF);
 }
@@ -1260,7 +1253,13 @@
 
     font-size: 18px;
 
-    color: #24352a;
+    color: var(--department-color, #24352a);
+}
+.department-modal.department-card-rainbow .department-program-info h4 {
+    background: linear-gradient(90deg, #FF6B6B, #FFD93D, #6BCB77, #4D96FF);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .department-program-info p {
@@ -1669,7 +1668,7 @@
 }
 .department-modal-header{text-align:center;max-width:720px;margin:0 auto 22px}
 .department-modal-header .eyebrow{font-size:10px;font-weight:700;letter-spacing:3px;color:#65806b}
-.department-modal-header h2{margin:10px 0 12px;font-size:clamp(38px,5vw,62px);line-height:.98;color:var(--department-color,#1f3025)}
+.department-modal-header h2{margin:10px 0 12px;font-size:clamp(38px,5vw,62px);line-height:.98;color:#1f3025}
 .department-modal-header p{font-size:13px;line-height:1.75;color:#707771;max-width:620px;margin:0 auto}
 .department-modal-section{margin-top:22px}
 .department-modal-section-title{text-align:center;margin-bottom:18px}
@@ -1693,7 +1692,8 @@
 .department-activities-popup .department-program-image img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
 .department-activities-popup .department-program-card:hover .department-program-image img{transform:scale(1.05)}
 .department-activities-popup .department-program-info{padding:20px;display:flex;flex-direction:column;justify-content:center}
-.department-activities-popup .department-program-info h4{margin:0 0 7px;font-size:18px;color:#24352a}
+.department-activities-popup .department-program-info h4{margin:0 0 7px;font-size:18px;color:var(--department-color,#24352a)}
+.department-modal.department-card-rainbow .department-activities-popup .department-program-info h4{background:linear-gradient(90deg,#FF6B6B,#FFD93D,#6BCB77,#4D96FF);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .department-activities-popup .department-program-info p{margin:0 0 13px;font-size:10px;line-height:1.6;color:#737a74}
 .department-activities-popup .department-program-info span{font-size:9px;font-weight:700;letter-spacing:1px;color:#477a55}
 .department-empty{padding:18px;background:#fff;border:1px solid #e1e6e1;color:#737a74;font-size:12px;line-height:1.7;text-align:center}
@@ -1744,7 +1744,7 @@
 .department-card-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
 .department-card:hover .department-card-image img{transform:scale(1.06)}
 .department-card-info{flex:1;padding:13px 15px;display:flex;flex-direction:column;justify-content:center}
-.department-card-info h3{margin:0 0 7px;color:var(--department-color,#1f3025);font-size:21px;line-height:1.1}
+.department-card-info h3{margin:0 0 7px;color:#1f3025;font-size:21px;line-height:1.1}
 .department-card-info p{margin:0;color:#707771;font-size:11px;line-height:1.55}
 .department-card-back{display:flex;flex-direction:column;justify-content:center;padding:28px;background:var(--department-color,#3f7d50);color:#fff;transform:rotateY(180deg)}
 .department-card-back h3{margin:0 0 12px;font-size:27px;line-height:1.05;color:#fff}
@@ -1963,7 +1963,7 @@
   border-radius: 50%;
   overflow: hidden;
   background: #edf1ed;
-  border: 5px solid #fff;
+  border: 5px solid var(--department-color, #fff);
   box-shadow: 0 8px 25px rgba(31,48,37,.12);
 }
 .department-leader-card .person-meta { padding: 8px 2px 0 !important; }
@@ -2003,7 +2003,7 @@
   border-radius: 50%;
   overflow: hidden;
   background: #edf1ed;
-  border: 4px solid #fff;
+  border: 4px solid var(--department-color, #fff);
   box-shadow: 0 8px 22px rgba(31,48,37,.10);
 }
 .department-members-grid .member-card .person-meta { padding: 12px 3px 0; }
@@ -2455,11 +2455,9 @@ footer {
 }
 
 /* Text/UI contrast on the new dark/gold backgrounds */
-.activities .section-title h2{
-  color: #eedd4b !important;
-}
+.activities .section-title h2,
 .activity-info h3{
-  color: #1F6E43 !important;
+  color: #ffffff !important;
 }
 .activities .section-title p,
 .activity-info p{
@@ -2527,20 +2525,19 @@ footer {
 
   <!-- HERO -->
   <header class="hero">
-   
-<video
-    class="hero-video"
-    autoplay
-    muted
-    loop
-    playsinline
-    preload="auto"
-    poster="GYAF2026_V4_WebBanner.png"
->
-    <source src="./video%20fix.mp4" type="video/mp4">
-    Your browser does not support HTML video.
-</video>
-
+    <video
+      id="heroVideo"
+      class="hero-video"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+      poster="GYAF2026_V4_WebBanner.png"
+    >
+      <source src="./video%20fix.mp4" type="video/mp4">
+      Your browser does not support HTML video.
+    </video>
   </header>
 
 
@@ -2585,7 +2582,7 @@ footer {
   <div class="scrap-deco deco-dept-leaf" aria-hidden="true"><img loading="lazy" decoding="async" src="Vector 146.png" alt=""></div>
   <div class="modern-section-heading heading-glow-box">
     <div class="heading-glow-inner">
-      <h2>The People Behind<br><em>Every Action</em></h2>
+      <h2>The People Behind<br><em>Every Action.</em></h2>
       <p>Five teams, one mission. Meet the people who keep Akar Nusa moving.</p>
     </div>
   </div>
@@ -2752,7 +2749,7 @@ footer {
     <div class="scrap-deco deco-purple-triangle" aria-hidden="true"><img loading="lazy" decoding="async" src="Polygon 1.png" alt=""></div>
     <div class="scrap-deco deco-orange-rings" aria-hidden="true"><img loading="lazy" decoding="async" src="Group 79.png" alt=""></div>
     <div class="modern-section-heading compact">
-      <h2>The Roots of <em>Akar Nusa</em></h2>
+      <h2>The Roots of <em>Akar Nusa.</em></h2>
     </div>
     <div id="founderGrid" class="founder-grid"></div>
   </section>
@@ -2761,7 +2758,8 @@ footer {
     <div class="scrap-deco deco-pink-ribbon" aria-hidden="true"><img loading="lazy" decoding="async" src="Vector 118.png" alt=""></div>
     <div class="scrap-deco deco-orange-rings-2" aria-hidden="true"><img loading="lazy" decoding="async" src="Subtract-1.png" alt=""></div>
     <div class="modern-section-heading compact">
-      <h2>Akar Nusa <em>People</em></h2>
+      <span>EVERYONE WHO JOINED</span>
+      <h2>Akar Nusa <em>People.</em></h2>
     </div>
     <div class="people-carousel-wrap">
       <button class="people-nav prev" id="peoplePrev" aria-label="Previous people">‹</button>
@@ -2891,13 +2889,6 @@ footer {
       const cards = document.querySelectorAll(".coverflow .card");
       const titleEl = document.getElementById("activity-title");
       const descEl = document.getElementById("activity-desc");
-      const activityDepartmentColors = {
-        "GreenLeap": "department-card-green",
-        "Akar NuCycle": "department-card-blue",
-        "Akar NuAction": "department-card-mint",
-        "Akar Nusa Tales": "department-card-green",
-        "Tree Planting": "department-card-mint"
-      };
       let currentCard = 0;
 
     function updateCarousel() {
@@ -2924,18 +2915,8 @@ footer {
   cards[right].classList.add("right");
 
   // Nama dan deskripsi
-  const currentActivity = cards[currentCard];
-  titleEl.classList.remove(
-    "department-card-green",
-    "department-card-blue",
-    "department-card-mint",
-    "department-card-rainbow",
-    "department-card-pink",
-    "department-card-earth"
-  );
-  titleEl.classList.add(activityDepartmentColors[currentActivity.dataset.title] || "department-card-green");
-  titleEl.textContent = currentActivity.dataset.title;
-  descEl.textContent = currentActivity.dataset.short;
+  titleEl.textContent = cards[currentCard].dataset.title;
+  descEl.textContent = cards[currentCard].dataset.short;
 }
       updateCarousel();
       function nextCard() {
@@ -3245,16 +3226,8 @@ function makeDepartmentActivityCard(originalCard){
 function openDepartmentModal(index){
   const d=departmentData[index];
   if(!d)return;
-  const modal=document.getElementById("departmentModal");
-  modal.classList.remove(
-    "department-card-green",
-    "department-card-blue",
-    "department-card-mint",
-    "department-card-rainbow",
-    "department-card-pink",
-    "department-card-earth"
-  );
-  modal.classList.add(d.color);
+  const modalEl=document.getElementById("departmentModal");
+  modalEl.className="department-modal"+(d.color?" "+d.color:"");
   document.getElementById("departmentModalCategory").textContent=d.category;
   document.getElementById("departmentModalName").textContent=d.name;
   document.getElementById("departmentModalDescription").textContent=d.description;
@@ -3285,6 +3258,7 @@ function openDepartmentModal(index){
     programList.innerHTML='<p class="department-empty">Main & Support works across the organization in strategy, operations, coordination, partnerships, website, and technical support.</p>';
   }
 
+  const modal=document.getElementById("departmentModal");
   modal.classList.add("active");
   modal.setAttribute("aria-hidden","false");
   document.body.style.overflow="hidden";
@@ -3363,6 +3337,92 @@ setupDepartmentModal();
     document.addEventListener("keydown", e => { if(e.key === "Escape") closeDepartmentModal(); });
 
     })();
+    
+const heroVideo = document.getElementById("heroVideo");
+
+if (heroVideo) {
+  // Start muted (guaranteed autoplay), then try to turn sound on right away.
+  heroVideo.muted = true;
+  heroVideo.volume = 1;
+
+  async function enableHeroSound() {
+    try {
+      heroVideo.muted = false;
+      heroVideo.dataset.soundEnabled = "true";
+      await heroVideo.play();
+      updateHeroAudio();
+      return true;
+    } catch (error) {
+      // Browser blocked sound: fall back to muted autoplay.
+      heroVideo.muted = true;
+      heroVideo.dataset.soundEnabled = "false";
+      heroVideo.play().catch(() => {});
+      return false;
+    }
+  }
+
+  // If the browser blocks sound, enable it on the visitor's first interaction.
+  const unlockEvents = ["pointerdown", "click", "keydown", "touchend"];
+  function unlockOnFirstInteraction() {
+    enableHeroSound().then((ok) => {
+      if (ok) {
+        unlockEvents.forEach((evt) =>
+          window.removeEventListener(evt, unlockOnFirstInteraction, true)
+        );
+      }
+    });
+  }
+
+  enableHeroSound().then((ok) => {
+    if (!ok) {
+      unlockEvents.forEach((evt) =>
+        window.addEventListener(evt, unlockOnFirstInteraction, true)
+      );
+    }
+  });
+
+  function updateHeroAudio() {
+    const hero = document.querySelector(".hero");
+    if (!hero) return;
+
+    const heroHeight = hero.offsetHeight;
+    const scrollY = window.scrollY;
+
+    // Volume fades as the page scrolls through the hero.
+    const progress = Math.min(
+      1,
+      Math.max(0, scrollY / heroHeight)
+    );
+
+    heroVideo.volume = 1 - progress;
+
+    // Unmute only after the user has enabled sound.
+    if (heroVideo.dataset.soundEnabled === "true") {
+      heroVideo.muted = progress >= 1;
+    }
+  }
+
+  // Enable sound after the user interacts with the video.
+  heroVideo.addEventListener("click", async () => {
+    try {
+      heroVideo.muted = false;
+      heroVideo.dataset.soundEnabled = "true";
+      await heroVideo.play();
+      updateHeroAudio();
+    } catch (error) {
+      console.log("Sound needs user interaction.");
+    }
+  });
+
+  window.addEventListener("scroll", updateHeroAudio, {
+    passive: true
+  });
+
+  updateHeroAudio();
+}
+
+
+
   </script>
 </body>
 </html>
