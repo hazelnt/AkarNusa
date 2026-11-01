@@ -5,13 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Akar Nusa – Nurturing the future</title>
   <link rel="icon" type="image/png" href="vector/bird.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700;800&family=Sanchez&family=Playfair+Display:wght@500;600;700;800&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
+    /* ---------- FONT THEME ----------
+       Pilihan 1 (aktif): League Spartan + Sanchez
+       Pilihan 2: Playfair Display + Montserrat (ganti dua baris di bawah) */
+    :root {
+      --font-heading: 'League Spartan', Arial, sans-serif;
+      --font-body: 'Sanchez', Georgia, serif;
+      /* --font-heading: 'Playfair Display', Georgia, serif; */
+      /* --font-body: 'Montserrat', Arial, sans-serif; */
+    }
     /* ---------- RESET & BASE ---------- */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: var(--font-body);
       scroll-behavior: smooth;
     }
     body {
@@ -2071,7 +2083,7 @@
     #f6f4ef 78%,
     #65806b 88%,
     #1f4332 95%,
-    #172b20 100%);
+    #1F3025 100%);
   isolation: isolate;
 }
 
@@ -2305,7 +2317,7 @@
 /* ---- dark "People Behind" department section ---- */
 .departments-modern.departments-dark{
   position: relative;
-  background: linear-gradient(180deg, #172b20 0%, #599c5d 100%);
+  background: linear-gradient(180deg, #1F3025 0%, #5F9763 100%);
   padding-top: 70px;
   overflow: hidden;
 }
@@ -2391,13 +2403,13 @@ footer {
    "People Behind Every Action" green (#17301f) leaves off.
 ===================================================== */
 .activities{
-  background: linear-gradient(180deg, #599c5d 0%, #9da63f 100%) !important;
+  background: linear-gradient(180deg, #5F9763 0%, #9CE1AD 100%) !important;
 }
 .founders-section{
-  background: linear-gradient(180deg, #9da63f 0%, #e8b140 100%);
+  background: linear-gradient(180deg, #9CE1AD 0%, #FCD0B8 100%);
 }
 .people-section{
-  background: linear-gradient(180deg, #e8b140 0%, #edc846 100%);
+  background: linear-gradient(180deg, #FCD0B8 0%, #F5CA74 70%, #EF8520 100%);
 }
 .contact-modern{
   background: #1f4332 !important;
@@ -2454,36 +2466,58 @@ footer {
   border-color: #eef4ef !important;
 }
 
-/* Text/UI contrast on the new dark/gold backgrounds */
-.activities .section-title h2,
-.activity-info h3{
+/* Text/UI contrast on the new gradient backgrounds */
+.activities .section-title h2{
   color: #ffffff !important;
 }
-.activities .section-title p,
-.activity-info p{
+.activity-info h3{
+  color: #1F6E43 !important;
+}
+.activities .section-title p{
   color: rgba(255,255,255,0.82) !important;
+}
+.activity-info p{
+  color: #1F4332 !important;
 }
 .founders-section .modern-section-heading > span,
 .people-section .modern-section-heading > span{
-  color: rgba(255,255,255,0.75) !important;
+  color: rgba(31,48,37,0.75) !important;
 }
 .founders-section .modern-section-heading h2,
 .people-section .modern-section-heading h2{
-  color: #ffffff !important;
+  color: #1F3025 !important;
 }
 .founders-section .modern-section-heading h2 em,
 .people-section .modern-section-heading h2 em{
-  color: #1f3025 !important;
+  color: #2F7D4F !important;
 }
 .founders-section .modern-section-heading p,
 .people-section .modern-section-heading p{
-  color: rgba(255,255,255,0.82) !important;
+  color: rgba(31,48,37,0.8) !important;
 }
 .people-card .person-meta h4{
-  color: #ffffff !important;
+  color: #ED1651 !important;
 }
 .people-card .person-meta span{
-  color: rgba(255,255,255,0.78) !important;
+  color: rgba(31,48,37,0.8) !important;
+}
+
+/* ---------- Fonts: headings use the heading font ---------- */
+h1, h2, h3, h4, h5, h6,
+nav ul li a,
+.contact-cta,
+.program-label,
+.department-card-click,
+.department-open-label{
+  font-family: var(--font-heading);
+}
+
+/* ---------- About + IB Award: justified text ---------- */
+.about-scrapbook .scrap-card p{
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
 }
 </style>
 
@@ -3093,13 +3127,13 @@ const departmentData=[
     description:"The core team handling strategy, partnerships, operations, coordination, website, digital tools, and technical support across Akar Nusa.",
     activitiesKey:null,
     leaders:[
-      {name:"Yesi",role:"MAIN LEADER",image:"Aknus_Main&Support/Yesi_President_Resize_HD.png",description:"Coordinates overall direction, partnerships, internal operations, website, and technical support across Akar Nusa."}
+      {name:"Yesi",role:"MAIN LEADER",image:"Aknus_Main&Support/Yesi_President.jpeg",description:"Coordinates overall direction, partnerships, internal operations, website, and technical support across Akar Nusa."}
     ],
     members:[
-      {name:"Shasa",role:"Manager Media",image:"Aknus_Main&Support/Shasa_Media_Resize_HD.png"},
-      {name:"Anin",role:"Secretary",image:"Aknus_Main&Support/Anindya_Secretary_Resize_HD.png"},
-      {name:"Putra",role:"Web Developer",image:"Aknus_Main&Support/Putra_Media_Resize_HD.png"},
-      {name:"Naufal",role:"Video Editor",image:"Aknus_Main&Support/Naufal_Media_Resize_HD.png"}
+      {name:"Shasa",role:"Media",image:"Aknus_Main&Support/Shasa_Media.PNG"},
+      {name:"Anin",role:"Secretary",image:"Aknus_Main&Support/Anindya_Secretary.JPG"},
+      {name:"Putra",role:"Web Developer",image:"Aknus_Main&Support/Putra_Media.JPG"},
+      {name:"Naufal",role:"Video Editor",image:"Aknus_Main&Support/Naufal_Media.jpeg"}
     ],
     about:"Main & Support brings strategy, partnerships, operations, coordination, website, digital tools, and technical support together so every other department can work smoothly."
   },
@@ -3110,12 +3144,12 @@ const departmentData=[
     description:"Environmental education for young people through workshops, campaigns, school visits, and partnerships.",
     activitiesKey:"greenleap",
     leaders:[
-      {name:"Ghina",role:"PROJECT MANAGER",image:"Aknus_GreenLeap/Ghina_GreenLeap_Resize_HD.png",description:"Leads the GreenLeap team and coordinates the people, ideas, and programs behind every environmental initiative."}
+      {name:"Ghina",role:"PROJECT MANAGER",image:"Aknus_GreenLeap/Ghina_GreenLeap.JPG",description:"Leads the GreenLeap team and coordinates the people, ideas, and programs behind every environmental initiative."}
     ],
     members:[
-      {name:"Ahsan",role:"Curriculum Lead",image:"Aknus_GreenLeap/Ahsan_Greenleap_Resize_HD.png"},
-      {name:"Khansa",role:"Curriculum Lead",image:"Aknus_GreenLeap/Khansa_GreenLeap_Resize_HD.png"},
-      {name:"Gladys",role:"Course Facilitator",image:"Aknus_GreenLeap/Gladys_GreenLeap_Resize_HD.png"}
+      {name:"Ahsan",role:"Curriculum Lead",image:"Aknus_GreenLeap/Ahsan_Greenleap.JPG"},
+      {name:"Khansa",role:"Curriculum Lead",image:"Aknus_GreenLeap/Khansa_GreenLeap.JPG"},
+      {name:"Gladys",role:"Course Facilitator",image:"Aknus_GreenLeap/Gladys_GreenLeap.png"}
     ],
     about:"GreenLeap focuses on creating environmental awareness and turning that awareness into concrete action through educational workshops, school visits, campaigns, and community initiatives."
   },
@@ -3126,13 +3160,13 @@ const departmentData=[
     description:"A waste-management initiative teaching communities how to sort, recycle, compost, and build sustainable habits.",
     activitiesKey:"nucycle",
     leaders:[
-      {name:"Arvin",role:"PROJECT LEADER",image:"Aknus_NuCycle/Arvin_NuCycle_Resize_HD.png,description:"Coordinates the waste-management program and community activities."},
-      {name:"Aulia",role:"PROJECT LEADER",image:"Aknus_NuCycle/Aulia_NuCycle_Resize_HD.png",description:"Supports planning, field implementation, and community education."}
+      {name:"Arvin",role:"PROJECT LEADER",image:"Aknus_NuCycle/Arvin_NuCycle.JPG",description:"Coordinates the waste-management program and community activities."},
+      {name:"Aulia",role:"PROJECT LEADER",image:"Aknus_NuCycle/Aulia_NuCycle.JPG",description:"Supports planning, field implementation, and community education."}
     ],
     members:[
-      {name:"Dzaki",role:"Waste Management",image:"Aknus_NuCycle/Dzaki_NuCycle_Resize_HD.png"},
-      {name:"Wilson",role:"Waste Process",image:"Aknus_NuCycle/Wilson_NuCycle_Resize_HD.png"},
-      {name:"Kirana",role:"Waste Liason",image:"Aknus_NuCycle/Kirana_NuCycle_Resize_HD.png"}
+      {name:"Dzaki",role:"Waste Management",image:"Aknus_NuCycle/Dzaki_NuCycle.JPG"},
+      {name:"Wilson",role:"Waste Process",image:"Aknus_NuCycle/Wilson_NuCycle.png"},
+      {name:"Kirana",role:"Waste Liason",image:"Aknus_NuCycle/Kirana_NuCycle.JPG"}
     ],
     about:"Akar NuCycle teaches communities about waste sorting, recycling, composting, and sustainable waste management so people can build habits that last."
   },
@@ -3143,11 +3177,11 @@ const departmentData=[
     description:"Community environmental action powered by volunteers who restore real ecosystems through hands-on work.",
     activitiesKey:"nuaction",
     leaders:[
-      {name:"Cer",role:"PROJECT LEADER",image:"Aknus_NuAction/Cer_NuAction_Resize_HD.png",description:"Coordinates volunteer-led environmental projects, from tree planting to river cleanups."}
+      {name:"Cer",role:"PROJECT LEADER",image:"Aknus_NuAction/Cer_NuAction.JPG",description:"Coordinates volunteer-led environmental projects, from tree planting to river cleanups."}
     ],
     members:[
-      {name:"Hanuun",role:"Community Trainer",image:"Aknus_NuAction/Hanuun_NuAction_Resize_HD.png"},
-      {name:"Arkaan",role:"Community Outreach",image:"Aknus_NuAction/Arkaan_NuAction_Resize_HD.png"}
+      {name:"Hanuun",role:"Community Trainer",image:"Aknus_NuAction/Hanuun_NuAction.JPG"},
+      {name:"Arkaan",role:"Community Outreach",image:"Aknus_NuAction/Arkaan_NuAction.JPG"}
     ],
     about:"Akar NuAction invites volunteers to directly participate in restoring ecosystems through tree planting, river cleanups, and community service days."
   },
@@ -3158,11 +3192,11 @@ const departmentData=[
     description:"Creative storytelling that spreads sustainability through media, stories, and educational content.",
     activitiesKey:"nusatales",
     leaders:[
-      {name:"Rayna",role:"PROJECT LEADER",image:"Aknus_NuTales/rayna_NuTales_Resize_HD.PNG",description:"Leads creative direction and develops storytelling content that makes sustainability engaging."}
+      {name:"Rayna",role:"PROJECT LEADER",image:"Aknus_NuTales/rayna_NuTales.jpg",description:"Leads creative direction and develops storytelling content that makes sustainability engaging."}
     ],
     members:[
-      {name:"Keanu",role:"Writer",image:"Aknus_NuTales/Keanu_NuTales_Resize_HD.png"},
-      {name:"Naura",role:"Illustrator",image:"Aknus_NuTales/Naura_NuTales_Resize_HD.png"}
+      {name:"Keanu",role:"Writer",image:"Aknus_NuTales/Keanu_NuTales.JPG"},
+      {name:"Naura",role:"Illustrator",image:"Aknus_NuTales/Naura_NuTales.JPG"}
     ],
     about:"Akar NusaTales inspires environmental awareness through storytelling, creative media, and educational content, turning big ideas into stories that are easy to relate to."
   }
@@ -3285,13 +3319,13 @@ function setupDepartmentModal(){
    FOUNDERS + EVERYONE WHO JOINED
    ===================================================== */
 const founderData = [
-  {name:"Raisha Kiara Dewi",role:"FOUNDER",image:"Aknus_Founder/Raisha_Akarnusa_Resize_HD.png"},
-  {name:"Aisyah",role:"FOUNDER",image:"Aknus_Founder/Aisyah_Akarnusa_Resize_HD.png"},
-  {name:"Azel",role:"FOUNDER",image:"Aknus_Founder/Azel_Akarnusa_Resize_HD.png"},
-  {name:"Naila",role:"FOUNDER",image:"Aknus_Founder/Naila_Akarnusa_Reesize_HD.png"},
-  {name:"Alra",role:"FOUNDER",image:"Aknus_Founder/Alra_Akarnusa_Resize_HD.png"},
-  {name:"Acha",role:"FOUNDER",image:"Aknus_Founder/Acha_NuAction_Resize_HD.png"},
-  {name:"Rara",role:"FOUNDER",image:"Aknus_Founder/Rara_Akarnusa_Resize_HD.png"}
+  {name:"Raisha Kiara Dewi",role:"FOUNDER",image:"Aknus_Founder/Raisha_Akarnusa.JPG"},
+  {name:"Aisyah",role:"COFOUNDER",image:"Aknus_Founder/Aisyah_Akarnusa.JPG"},
+  {name:"Azel",role:"COFOUNDER",image:"Aknus_Founder/Azel_Akarnusa.JPG"},
+  {name:"Naila",role:"COFOUNDER",image:"Aknus_Founder/Naila_AkarNusa.jpg"},
+  {name:"Alra",role:"COFOUNDER",image:"Aknus_Founder/Alra_Akarnusa.JPG"},
+  {name:"Acha",role:"COFOUNDER",image:"Aknus_Founder/Acha_NuAction.JPG"},
+  {name:"Rara",role:"COFOUNDER",image:"Aknus_Founder/Rara_Akarnusa.JPG"}
 ];
 
 const peopleData = [
